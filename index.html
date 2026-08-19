@@ -17,7 +17,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .approvedCard{width:72px;height:106px;padding:0;background:none;filter:drop-shadow(0 7px 5px #000b);cursor:pointer}
 .approvedCard img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
 
-/* v2.5 — clean stadium + ONE interactive lineup */
+/* v2.6 — clean stadium + ONE interactive lineup */
 #team{
   margin-left:-14px;
   margin-right:-14px;
@@ -46,7 +46,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 #team .approvedCard,#team .fc{position:relative;z-index:6}
 
 
-/* v2.5 — compact XI spacing, matching approved mockup */
+/* v2.6 — compact XI spacing, matching approved mockup */
 #team .stadium{
   padding:92px 10px 18px !important;
 }
@@ -79,7 +79,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 }
 
 
-/* v2.5 — HOME */
+/* v2.6 — HOME */
 #home{padding:14px 14px 100px}
 .homeHero{
   border:1px solid #173c29;border-radius:22px;padding:18px;
@@ -119,11 +119,11 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .fixtureTeam{font-size:12px;font-weight:850}.fixtureTeam.right{text-align:right}
 .fixtureTime{text-align:center;font-size:11px;color:#8d9b93;font-weight:800}.fixtureTime b{display:block;color:#fff;font-size:13px;margin-top:2px}
 
-/* v2.5 MERCADO */
+/* v2.6 MERCADO */
 .marketWrap{padding:18px 14px 110px}.marketHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.marketEyebrow{font-size:11px;color:#7f8d84;font-weight:900;letter-spacing:.12em}.marketTitle{font-size:30px;font-weight:950}.marketMoney{color:#ffd34d;font-weight:950;font-size:17px}.marketTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#07110c;border:1px solid #173c29;padding:5px;border-radius:15px}.marketTab{border:0;background:transparent;color:#87948c;padding:10px 3px;border-radius:11px;font-weight:900;font-size:12px}.marketTab.active{background:#13251b;color:#73ff19}.marketTools{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}.marketSearch,.marketFilter{border:1px solid #173c29;background:#07110c;border-radius:14px;padding:12px;color:#aab4ae;font-size:12px;font-weight:800}.marketNotice{font-size:11px;color:#7f8d84;margin:10px 3px 8px}.marketList{display:flex;flex-direction:column;gap:9px}.marketPlayer{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;border:1px solid #173c29;background:#07110c;border-radius:17px;padding:11px}.marketAvatar{width:44px;height:55px;border-radius:10px;background:linear-gradient(145deg,#d8b43d,#8c6b10);display:grid;place-items:center;font-size:22px;border:1px solid #e8ce68}.marketInfo{min-width:0}.marketInfo b{display:block;font-size:13px}.marketInfo span,.marketInfo small{display:block;color:#87948c;font-size:10px;margin-top:3px}.marketBid{text-align:right}.marketBid strong{display:block;font-size:12px;margin-bottom:7px}.marketBid button{border:1px solid #4b8d2c;background:#13251b;color:#73ff19;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:950}
 .bidModal{position:fixed;inset:0;background:#000b;z-index:999;display:none;align-items:flex-end}.bidModal.show{display:flex}.bidBox{width:100%;background:#08110c;border-top:1px solid #285337;border-radius:24px 24px 0 0;padding:12px 18px 28px;box-shadow:0 -20px 60px #000}.bidGrab{width:42px;height:4px;border-radius:5px;background:#435048;margin:0 auto 18px}.bidLabel{font-size:10px;letter-spacing:.12em;color:#73ff19;font-weight:950}.bidBox h3{font-size:22px;margin:5px 0}.bidMeta{font-size:12px;color:#89968e}.bidInput{display:flex;align-items:center;margin:18px 0 8px;border:1px solid #285337;background:#050b07;border-radius:15px;padding:4px 12px}.bidInput input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:28px;font-weight:950;padding:10px 2px}.bidInput span{font-weight:950;color:#ffd34d}.bidHint{font-size:11px;color:#75827a;line-height:1.4}.bidActions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px;margin-top:18px}.bidActions button{padding:13px;border-radius:12px;border:1px solid #294233;background:#0d1711;color:#b6c0ba;font-weight:900}.bidActions .confirmBid{background:#142b18;border-color:#4b8d2c;color:#73ff19}.bidDone{display:none;text-align:center;color:#73ff19;font-weight:950;padding-top:14px}
 
-/* v2.5 — functional market tabs */
+/* v2.6 — functional market tabs */
 .marketPane{display:none}
 .marketPane.active{display:block}
 .emptyState{
@@ -136,6 +136,31 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .bidRow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
 .bidRow .marketInfo b{font-size:13px}
 .bidStatus{font-size:10px;font-weight:950;color:#73ff19;background:#13251b;border:1px solid #285337;border-radius:999px;padding:7px 9px}
+
+
+/* v2.6 — Mis pujas */
+.bidsSummary{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0
+}
+.bidsSummary>div{
+  border:1px solid #173c29;background:#07110c;border-radius:15px;padding:12px
+}
+.bidsSummary span{display:block;color:#7f8d84;font-size:10px;font-weight:850}
+.bidsSummary b{display:block;margin-top:4px;font-size:17px;color:#fff}
+.bidCard{
+  border:1px solid #173c29;background:#07110c;border-radius:17px;padding:12px;margin-bottom:9px
+}
+.bidCardTop{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.bidName{font-size:14px;font-weight:950}
+.bidMeta2{font-size:10px;color:#87948c;margin-top:3px}
+.bidAmountBig{font-size:15px;font-weight:950;text-align:right}
+.bidStatusLine{display:flex;justify-content:space-between;align-items:center;margin:11px 0 9px}
+.bidStatusPill{font-size:10px;font-weight:950;color:#73ff19;background:#13251b;border:1px solid #285337;border-radius:999px;padding:6px 8px}
+.bidTimer{font-size:10px;color:#8d9b93;font-weight:800}
+.bidActions2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.bidActions2 button{padding:9px;border-radius:10px;border:1px solid #294233;background:#0d1711;color:#b6c0ba;font-size:10px;font-weight:900}
+.bidActions2 .raise{color:#73ff19;border-color:#4b8d2c;background:#13251b}
+.bidActions2 .cancelBid{color:#ff7979;border-color:#5a2f2f}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -192,6 +217,10 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 </div></div>
 
 <div id="marketBids" class="marketPane">
+  <div class="bidsSummary">
+    <div><span>Pujas activas</span><b id="activeBidCount">0</b></div>
+    <div><span>Dinero comprometido</span><b id="committedMoney">0,0 M€</b></div>
+  </div>
   <div class="emptyState" id="emptyBids">
     <div class="emptyIcon">📩</div>
     <b>Aún no tienes pujas activas</b>
@@ -249,11 +278,21 @@ function closeR(){overlay.classList.remove("show")}function drawer(){shade.class
 let currentBidButton=null;
 let activeBids=[];
 
+try{
+  const saved=localStorage.getItem('futbolazo_active_bids');
+  if(saved) activeBids=JSON.parse(saved);
+}catch(e){}
+
+function saveBids(){
+  try{localStorage.setItem('futbolazo_active_bids',JSON.stringify(activeBids))}catch(e){}
+}
+
 function showMarketTab(name,btn){
   document.querySelectorAll('.marketPane').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.marketTab').forEach(x=>x.classList.remove('active'));
   document.getElementById(name==='available'?'marketAvailable':name==='bids'?'marketBids':'marketSales').classList.add('active');
   btn.classList.add('active');
+  if(name==='bids') renderBids();
 }
 
 function openBid(btn){
@@ -270,18 +309,18 @@ function closeBid(){document.getElementById('bidModal').classList.remove('show')
 function confirmBid(){
   const amount=parseFloat(document.getElementById('bidAmount').value);
   if(!amount||amount<=0)return;
-
   const card=currentBidButton.closest('.marketPlayer');
   const player=card.querySelector('.marketInfo b').textContent;
   const meta=card.querySelector('.marketInfo span').textContent;
   const shown=amount.toFixed(1).replace('.',',')+' M€';
-
-  if(!activeBids.some(x=>x.player===player)){
-    activeBids.push({player,meta,amount:shown});
+  const now=Date.now();
+  const existing=activeBids.find(x=>x.player===player);
+  if(existing){
+    existing.amount=shown; existing.rawAmount=amount; existing.updatedAt=now;
   }else{
-    activeBids=activeBids.map(x=>x.player===player?{player,meta,amount:shown}:x);
+    activeBids.push({player,meta,amount:shown,rawAmount:amount,updatedAt:now});
   }
-
+  saveBids();
   renderBids();
   document.getElementById('bidDone').style.display='block';
   currentBidButton.textContent='PUJA HECHA';
@@ -289,18 +328,63 @@ function confirmBid(){
   setTimeout(closeBid,700);
 }
 
+function increaseBid(player){
+  const bid=activeBids.find(x=>x.player===player);
+  if(!bid)return;
+  const plus=(bid.rawAmount||parseFloat(bid.amount.replace(',','.')))+0.5;
+  bid.rawAmount=plus;
+  bid.amount=plus.toFixed(1).replace('.',',')+' M€';
+  bid.updatedAt=Date.now();
+  saveBids();
+  renderBids();
+}
+
+function cancelBid(player){
+  activeBids=activeBids.filter(x=>x.player!==player);
+  saveBids();
+  renderBids();
+  document.querySelectorAll('.marketPlayer').forEach(card=>{
+    const name=card.querySelector('.marketInfo b');
+    if(name && name.textContent===player){
+      const btn=card.querySelector('.marketBid button');
+      if(btn){btn.textContent='PUJAR';btn.style.opacity='1';}
+    }
+  });
+}
+
 function renderBids(){
   const list=document.getElementById('bidList');
   const empty=document.getElementById('emptyBids');
+  if(!list||!empty)return;
   list.innerHTML='';
   empty.style.display=activeBids.length?'none':'block';
 
+  const total=activeBids.reduce((sum,b)=>sum+(b.rawAmount||parseFloat(String(b.amount).replace(',','.'))||0),0);
+  const c=document.getElementById('activeBidCount');
+  const m=document.getElementById('committedMoney');
+  if(c)c.textContent=activeBids.length;
+  if(m)m.textContent=total.toFixed(1).replace('.',',')+' M€';
+
   activeBids.forEach(b=>{
     const el=document.createElement('div');
-    el.className='marketPlayer bidRow';
-    el.innerHTML=`<div class="marketInfo"><b>${b.player}</b><span>${b.meta}</span><small>Tu puja: ${b.amount}</small></div><div class="bidStatus">ACTIVA</div>`;
+    el.className='bidCard';
+    el.innerHTML=`
+      <div class="bidCardTop">
+        <div><div class="bidName">${b.player}</div><div class="bidMeta2">${b.meta}</div></div>
+        <div class="bidAmountBig">${b.amount}</div>
+      </div>
+      <div class="bidStatusLine">
+        <span class="bidStatusPill">PUJA ACTIVA</span>
+        <span class="bidTimer">⏱️ pendiente de resolución</span>
+      </div>
+      <div class="bidActions2">
+        <button class="raise" onclick='increaseBid(${JSON.stringify(b.player)})'>+0,5 M€</button>
+        <button class="cancelBid" onclick='cancelBid(${JSON.stringify(b.player)})'>Cancelar puja</button>
+      </div>`;
     list.appendChild(el);
   });
 }
+
+document.addEventListener('DOMContentLoaded', renderBids);
 </script>
 </body></html>
