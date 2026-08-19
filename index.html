@@ -1,0 +1,202 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FUTBOLAZO FC v0.7</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#010302;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{max-width:430px;margin:auto;min-height:100vh;background:#020604;padding-bottom:82px}
+header{height:70px;display:flex;align-items:center;gap:11px;padding:14px;position:sticky;top:0;background:#030805f4;border-bottom:1px solid #18321f;z-index:15}.hamb,.formation{border:1px solid #294531;background:#09130d;color:#7cff18;border-radius:12px;font-weight:950}.hamb{font-size:24px;padding:7px 11px}.logo{flex:1;font-size:20px;font-weight:1000;font-style:italic}.logo b{color:#7cff18}.money{font-size:14px;color:#f2c84d;font-weight:1000}
+main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color:#91a097}.row{display:flex;align-items:center;justify-content:space-between}.box{background:#0b1610;border:1px solid #203727;border-radius:17px;padding:15px;margin:12px 0}.btn{border:0;border-radius:12px;padding:12px;font-weight:1000;background:#18251b;color:#fff}.primary{background:#7cff18;color:#061005}.wide{width:100%}
+.stadium{position:relative;padding:86px 8px 18px;border-radius:25px;overflow:hidden;background:radial-gradient(ellipse at 50% 0,#6c7670 0,#29322d 16%,#0a100c 39%,#020302 68%)}.stands{position:absolute;top:8px;left:-8%;width:116%;height:118px;border-radius:50%;background:radial-gradient(circle,#d9ddd8 0 1px,transparent 1.8px),linear-gradient(#171d18,#080b09);background-size:8px 8px,100% 100%;border:14px solid #111713;box-shadow:0 0 22px #fff5}.stands:after{content:"FUTBOLAZO FC      FUTBOLAZO FC      FUTBOLAZO FC";position:absolute;bottom:10px;left:8%;right:8%;overflow:hidden;white-space:nowrap;color:#7cff18;font-size:8px;font-weight:1000;letter-spacing:1px}.flood{position:absolute;top:15px;left:7%;right:7%;height:20px;background:radial-gradient(circle,#fff 0 2px,transparent 3px);background-size:23px 10px;filter:drop-shadow(0 0 6px white)}
+.pitch{height:510px;position:relative;border:1px solid #72a87a;border-radius:14px;background:repeating-linear-gradient(90deg,#145124 0 38px,#1a5e2a 38px 76px);box-shadow:0 0 30px #32ff5228,inset 0 0 30px #001b08}.pitch:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff4a}.pitch:after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid #ffffff4a}
+.slot{position:absolute;transform:translate(-50%,-50%);z-index:3}.fc{width:68px;height:101px;clip-path:polygon(10% 0,90% 0,100% 7%,100% 87%,50% 100%,0 87%,0 7%);padding:4px 5px;display:flex;flex-direction:column;text-align:center;font-weight:1000;filter:drop-shadow(0 7px 5px #000b);position:relative;overflow:hidden}.fc:after{content:"";position:absolute;inset:1px;clip-path:inherit;border:1px solid #fff7;pointer-events:none}.back{background:linear-gradient(145deg,#101a13,#020503);outline:1px solid #7cff18;color:#7cff18;justify-content:center;font-size:22px}
+.pretty{background:radial-gradient(circle at 74% 18%,#fff8c7 0,#f5d76d 17%,#dda413 50%,#694300 100%);color:#160e00}.normal{background:linear-gradient(145deg,#f3df8f,#c8a13b 48%,#856119);color:#171000}.weak{background:linear-gradient(145deg,#c4934e,#8c5e25 48%,#503310);color:#fff0bf}.silver{background:linear-gradient(145deg,#f7f8f8,#cbd0d3 45%,#7f898f);color:#101315}
+.cardTop{display:flex;align-items:center;justify-content:space-between;height:12px}.brand{font-size:4.1px;letter-spacing:-.2px}.pos{font-size:8px}.portrait{height:51px;display:flex;align-items:end;justify-content:center;margin-top:-2px}.portrait img{width:48px;height:59px;object-fit:contain;filter:drop-shadow(0 2px 2px #0005)}.nm{font-size:7.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid #0003;padding-top:2px;letter-spacing:.2px}.meta{display:flex;justify-content:space-between;align-items:flex-end;font-size:5px;line-height:1.05}.club,.nation{width:49%;overflow:hidden;white-space:nowrap}.club b,.nation b{font-size:8px;display:block;line-height:1}.bench{display:flex;gap:11px;overflow:auto;padding-bottom:4px}.benchItem{text-align:center;font-size:10px}
+.tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;display:grid;grid-template-columns:repeat(5,1fr);background:#050b07f7;border-top:1px solid #203526;padding:8px 3px 12px;z-index:18}.tabs button{border:0;background:none;color:#89968e;font-size:10px;font-weight:900}.tabs button.on{color:#7cff18}.tabs span{display:block;font-size:19px}
+.shade,.modal,.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:30}.shade.open,.modal.open{display:block}.drawer{height:100%;width:min(78vw,330px);background:#07100b;padding:42px 18px}.league{padding:13px;background:#101b13;border-radius:13px;margin:9px 0}.league.on{border:1px solid #7cff18;background:#132719}.modal.open{display:grid;place-items:end center;padding:18px}.sheet{width:min(400px,100%);background:#0a130d;border:1px solid #294531;border-radius:22px;padding:17px}.formations{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.formations button{padding:14px;border-radius:12px;border:1px solid #2d4534;background:#101b13;color:#fff;font-weight:950}.formations button.selected{border-color:#7cff18;color:#7cff18}
+.overlay{z-index:50}.overlay.show{display:grid;place-items:center;padding:22px}.reveal{width:min(340px,92vw);text-align:center}.bigcard{height:430px;clip-path:polygon(9% 0,91% 0,100% 7%,100% 87%,50% 100%,0 87%,0 7%);background:radial-gradient(circle at 72% 18%,#fff8bd,#e3b22e 42%,#644400);color:#171000;padding:25px;display:flex;flex-direction:column;justify-content:center;gap:17px;filter:drop-shadow(0 0 28px #e8b42d66)}.stage{font-size:21px;font-weight:1000}.final{font-size:32px;font-weight:1000}
+
+.approvedCard{width:72px;height:106px;padding:0;background:none;filter:drop-shadow(0 7px 5px #000b);cursor:pointer}
+.approvedCard img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
+
+/* v2.3 — clean stadium + ONE interactive lineup */
+#team{
+  margin-left:-14px;
+  margin-right:-14px;
+  position:relative;
+  background:#010503 !important;
+  overflow:hidden;
+}
+#team .stadium{
+  position:relative;
+  padding:145px 16px 28px !important;
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.04),rgba(0,0,0,.10)),
+    url("stadium-clean.png") center center/cover no-repeat !important;
+  overflow:hidden !important;
+}
+#team .pitch{
+  position:relative;
+  z-index:3;
+  background:transparent !important;
+  border:1px solid rgba(220,255,224,.18) !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+#team .pitch:before,#team .pitch:after{opacity:.12 !important}
+#team .stands,#team .flood{display:none !important}
+#team .approvedCard,#team .fc{position:relative;z-index:6}
+
+
+/* v2.3 — compact XI spacing, matching approved mockup */
+#team .stadium{
+  padding:92px 10px 18px !important;
+}
+#team .pitch{
+  height:535px !important;
+  min-height:535px !important;
+  background:transparent !important;
+}
+#team .fc{
+  width:52px !important;
+  height:74px !important;
+  min-width:52px !important;
+  max-width:52px !important;
+}
+#team .approvedCard{
+  width:58px !important;
+  height:auto !important;
+  max-width:58px !important;
+}
+#team .approvedCard img{
+  width:58px !important;
+  height:auto !important;
+  max-width:58px !important;
+}
+@media (max-width:430px){
+  #team .stadium{padding-top:82px !important}
+  #team .pitch{height:515px !important;min-height:515px !important}
+  #team .fc{width:50px !important;height:71px !important;min-width:50px !important;max-width:50px !important}
+  #team .approvedCard,#team .approvedCard img{width:56px !important;max-width:56px !important}
+}
+
+
+/* v2.3 — HOME */
+#home{padding:14px 14px 100px}
+.homeHero{
+  border:1px solid #173c29;border-radius:22px;padding:18px;
+  background:linear-gradient(145deg,#0b1812,#06100b);
+  box-shadow:0 14px 35px rgba(0,0,0,.28);margin-bottom:14px
+}
+.homeEyebrow{font-size:12px;color:#8d9b93;font-weight:800;letter-spacing:.08em}
+.homeTitle{font-size:27px;font-weight:950;margin:5px 0 14px}
+.homeTitle b{color:#73ff19}
+.matchCard{border:1px solid #214d32;background:#07120c;border-radius:18px;padding:15px}
+.matchTop{display:flex;justify-content:space-between;align-items:center;color:#a6b0aa;font-size:12px;font-weight:800}
+.matchTeams{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:14px}
+.club{text-align:center;font-weight:900;font-size:13px}
+.clubBadge{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:0 auto 7px;background:#112319;border:1px solid #31553e;font-size:24px}
+.vs{font-weight:950;color:#73ff19;font-size:17px}
+.homeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.homeTile{border:1px solid #173c29;background:#07110c;border-radius:18px;padding:14px;min-height:82px}
+.tileLabel{font-size:11px;color:#85948b;font-weight:800;text-transform:uppercase}
+.tileValue{font-size:19px;font-weight:950;margin-top:5px}
+.tileValue.green{color:#73ff19}
+.quickTitle{font-size:17px;font-weight:950;margin:18px 2px 10px}
+.quickRow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.quick{border:1px solid #173c29;background:#07110c;border-radius:16px;padding:13px 7px;text-align:center;font-size:12px;font-weight:850}
+.quick .ico{font-size:23px;display:block;margin-bottom:5px}
+.ranking{margin-top:14px;border:1px solid #173c29;background:#07110c;border-radius:18px;padding:14px}
+.rankRow{display:grid;grid-template-columns:24px 1fr auto;align-items:center;padding:9px 0;border-bottom:1px solid #13251b;font-size:13px;font-weight:850}
+.rankRow:last-child{border-bottom:0}
+.rankPts{color:#73ff19}
+
+
+.nextRound{margin-top:14px;border:1px solid #173c29;background:#07110c;border-radius:18px;padding:14px}
+.fixtureHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.fixtureHead strong{font-size:14px}
+.compPill{font-size:11px;font-weight:900;color:#73ff19;border:1px solid #285337;border-radius:999px;padding:6px 9px}
+.fixture{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #13251b}
+.fixture:last-child{border-bottom:0}
+.fixtureTeam{font-size:12px;font-weight:850}.fixtureTeam.right{text-align:right}
+.fixtureTime{text-align:center;font-size:11px;color:#8d9b93;font-weight:800}.fixtureTime b{display:block;color:#fff;font-size:13px;margin-top:2px}
+
+/* v2.3 MERCADO */
+.marketWrap{padding:18px 14px 110px}.marketHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.marketEyebrow{font-size:11px;color:#7f8d84;font-weight:900;letter-spacing:.12em}.marketTitle{font-size:30px;font-weight:950}.marketMoney{color:#ffd34d;font-weight:950;font-size:17px}.marketTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#07110c;border:1px solid #173c29;padding:5px;border-radius:15px}.marketTab{border:0;background:transparent;color:#87948c;padding:10px 3px;border-radius:11px;font-weight:900;font-size:12px}.marketTab.active{background:#13251b;color:#73ff19}.marketTools{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}.marketSearch,.marketFilter{border:1px solid #173c29;background:#07110c;border-radius:14px;padding:12px;color:#aab4ae;font-size:12px;font-weight:800}.marketNotice{font-size:11px;color:#7f8d84;margin:10px 3px 8px}.marketList{display:flex;flex-direction:column;gap:9px}.marketPlayer{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;border:1px solid #173c29;background:#07110c;border-radius:17px;padding:11px}.marketAvatar{width:44px;height:55px;border-radius:10px;background:linear-gradient(145deg,#d8b43d,#8c6b10);display:grid;place-items:center;font-size:22px;border:1px solid #e8ce68}.marketInfo{min-width:0}.marketInfo b{display:block;font-size:13px}.marketInfo span,.marketInfo small{display:block;color:#87948c;font-size:10px;margin-top:3px}.marketBid{text-align:right}.marketBid strong{display:block;font-size:12px;margin-bottom:7px}.marketBid button{border:1px solid #4b8d2c;background:#13251b;color:#73ff19;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:950}
+</style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
+<section id="home" class="screen active">
+  <div class="homeHero">
+    <div class="homeEyebrow">FUTBOLAZO FC · JORNADA 1</div>
+    <div class="homeTitle">Tu equipo está <b>listo</b> ⚡</div>
+  </div>
+
+  <div class="homeGrid">
+    <div class="homeTile"><div class="tileLabel">Presupuesto</div><div class="tileValue">26,6 M€</div></div>
+    <div class="homeTile"><div class="tileLabel">Posición</div><div class="tileValue green">#4</div></div>
+    <div class="homeTile"><div class="tileLabel">Capitán</div><div class="tileValue">Haaland</div></div>
+    <div class="homeTile"><div class="tileLabel">Killer</div><div class="tileValue">Sin elegir</div></div>
+  </div>
+
+  <div class="quickTitle">Accesos rápidos</div>
+  <div class="quickRow">
+    <div class="quick" onclick="go('team')"><span class="ico">⚽</span>Plantilla</div>
+    <div class="quick" onclick="go('market')"><span class="ico">🛒</span>Mercado</div>
+    <div class="quick" onclick="go('league')"><span class="ico">🏆</span>Liga</div>
+  </div>
+
+  <div class="ranking">
+    <div class="matchTop"><span>TOP DE LA LIGA</span><span>Ver clasificación</span></div>
+    <div class="rankRow"><span>1</span><span>Los Galácticos</span><span class="rankPts">38 pts</span></div>
+    <div class="rankRow"><span>2</span><span>FC Titanes</span><span class="rankPts">34 pts</span></div>
+    <div class="rankRow"><span>3</span><span>La Máquina</span><span class="rankPts">31 pts</span></div>
+  </div>
+
+  <div class="nextRound">
+    <div class="fixtureHead"><strong>PRÓXIMOS PARTIDOS</strong><span class="compPill">LIGA ▾</span></div>
+    <div class="fixture"><div class="fixtureTeam">Real Madrid</div><div class="fixtureTime">SÁB 22 AGO<b>21:00</b></div><div class="fixtureTeam right">Barcelona</div></div>
+    <div class="fixture"><div class="fixtureTeam">Villarreal</div><div class="fixtureTime">DOM 23 AGO<b>18:30</b></div><div class="fixtureTeam right">Atlético</div></div>
+    <div class="fixture"><div class="fixtureTeam">Sevilla</div><div class="fixtureTime">DOM 23 AGO<b>21:00</b></div><div class="fixtureTeam right">Valencia</div></div>
+  </div>
+</section>
+<section id="team" class="screen"><div class="box" style="padding:10px 12px;margin-top:0;font-size:11px">
+<b>Categorías:</b> ✨ Oro bonito · 🟡 Oro normal · 🟤 Oro flojo · ⚪ Plata
+</div><div class="row"><div><div class="muted">MI PLANTILLA</div><h1>11 inicial</h1></div><button id="formBtn" class="formation" onclick="openForms()" style="padding:9px 12px">4-3-3 ▾</button></div><div class="stadium"><div class="stands"></div><div class="flood"></div><div id="pitch" class="pitch"></div></div><h2>🪑 Banquillo</h2><div id="bench" class="bench"></div></section>
+<section id="market" class="screen"><div class="marketWrap">
+<div class="marketHead"><div><div class="marketEyebrow">MERCADO</div><div class="marketTitle">Fichajes</div></div><div class="marketMoney">26,6 M€</div></div>
+<div class="marketTabs"><button class="marketTab active">Disponibles</button><button class="marketTab">Mis pujas</button><button class="marketTab">Ventas</button></div>
+<div class="marketTools"><div class="marketSearch">🔎 Buscar jugador</div><div class="marketFilter">☰ Filtros</div></div>
+<div class="marketNotice">⏱️ El mercado se actualiza cada día</div>
+<div class="marketList">
+<div class="marketPlayer"><div class="marketAvatar">⚽</div><div class="marketInfo"><b>Jude Bellingham</b><span>MC · Real Madrid</span><small>Valor 14,8 M€</small></div><div class="marketBid"><strong>15,2 M€</strong><button>PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">⚡</div><div class="marketInfo"><b>Nico Williams</b><span>EI · Athletic Club</span><small>Valor 10,4 M€</small></div><div class="marketBid"><strong>10,9 M€</strong><button>PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">🛡️</div><div class="marketInfo"><b>Ronald Araújo</b><span>DFC · Barcelona</span><small>Valor 9,7 M€</small></div><div class="marketBid"><strong>10,1 M€</strong><button>PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">🔥</div><div class="marketInfo"><b>Vlahović</b><span>DC · Juventus</span><small>Valor 11,3 M€</small></div><div class="marketBid"><strong>11,8 M€</strong><button>PUJAR</button></div></div>
+</div></div></section>
+<section id="league" class="screen"><div class="muted">LIGA</div><h1>🏆 Clasificación</h1><div class="box"><p>🥇 Carlos FC <b style="float:right">53</b></p><p>🥈 Isma FC <b style="float:right">48</b></p><p>🥉 David FC <b style="float:right">46</b></p></div></section>
+<section id="profile" class="screen"><div class="muted">PERFIL</div><h1>👤 Isma FC</h1><div class="box"><h2>🏆 2 campeonatos</h2></div></section></main>
+<nav class="tabs"><button class="on" data-id="home" onclick="go('home',this)"><span>🏠</span>Inicio</button><button data-id="team" onclick="go('team',this)"><span>⚽</span>Plantilla</button><button data-id="market" onclick="go('market',this)"><span>🛒</span>Mercado</button><button data-id="league" onclick="go('league',this)"><span>🏆</span>Liga</button><button data-id="profile" onclick="go('profile',this)"><span>👤</span>Perfil</button></nav></div>
+<div id="shade" class="shade" onclick="drawer()"><div class="drawer" onclick="event.stopPropagation()"><h2>Mis ligas</h2><div class="league on">🏆 Liga de Amigos</div><div class="league">⭐ Champions Fantasy</div><div class="league">⚽ Liga Trabajo</div><div class="league">➕ Crear liga</div><div class="league">🔑 Unirse con código</div></div></div>
+<div id="modal" class="modal" onclick="closeForms()"><div class="sheet" onclick="event.stopPropagation()"><div class="row"><h2>Cambiar alineación</h2><button class="btn" onclick="closeForms()">✕</button></div><div id="formList" class="formations"></div></div></div>
+<div id="overlay" class="overlay"><div class="reveal"><div class="bigcard"><div id="s1" class="stage"></div><div id="s2" class="stage"></div><div id="s3" class="stage"></div><div id="s4" class="final"></div></div><button class="btn primary wide" style="margin-top:14px" onclick="closeR()">CONTINUAR</button></div></div>
+<script>
+const P=[
+["Haaland","DC","Man. City","🇳🇴","Noruega","pretty","haaland.svg"],
+["Lamine Yamal","ED","Barcelona","🇪🇸","España","pretty","yamal.svg"],
+["Mbappé","EI","Real Madrid","🇫🇷","Francia","pretty","mbappe.svg"],
+["Bellingham","MC","Real Madrid","🏴","Inglaterra","pretty","bellingham.svg"],
+["Pedri","MC","Barcelona","🇪🇸","España","normal","pedri.svg"],
+["Valverde","MC","Real Madrid","🇺🇾","Uruguay","pretty","valverde.svg"],
+["Rüdiger","DFC","Real Madrid","🇩🇪","Alemania","weak","rudiger.svg"],
+["Araújo","DFC","Barcelona","🇺🇾","Uruguay","normal","araujo.svg"],
+["Marquinhos","DFC","PSG","🇧🇷","Brasil","normal","marquinhos.svg"],
+["Carvajal","LD","Real Madrid","🇪🇸","España","weak","carvajal.svg"],
+["Courtois","POR","Real Madrid","🇧🇪","Bélgica","pretty","courtois.svg"]];
+const B=[
+["Nico Williams","EI","Athletic","🇪🇸","España","normal","nico.svg"],
+["Vlahović","DC","Juventus","🇷🇸","Serbia","normal","vlahovic.svg"]];
+const forms={"4-3-3":[[50,23],[24,30],[76,30],[28,49],[50,49],[72,49],[15,68],[38,68],[62,68],[85,68],[50,84]],"4-4-2":[[35,17],[65,17],[14,46],[38,46],[62,46],[86,46],[14,73],[38,73],[62,73],[86,73],[50,91]],"4-2-3-1":[[50,12],[18,34],[50,32],[82,34],[35,52],[65,52],[14,74],[38,74],[62,74],[86,74],[50,91]],"4-3-1-2":[[34,16],[66,16],[50,34],[22,51],[50,54],[78,51],[14,74],[38,74],[62,74],[86,74],[50,91]],"3-5-2":[[34,14],[66,14],[10,45],[30,48],[50,48],[70,48],[90,45],[25,73],[50,75],[75,73],[50,91]],"5-3-2":[[34,14],[66,14],[22,48],[50,50],[78,48],[8,73],[29,75],[50,76],[71,75],[92,73],[50,91]]};let current="4-3-3",seen={};
+function clubIcon(c){return c==="Real Madrid"?"⚪":c==="Barcelona"?"🔵🔴":c==="Man. City"?"🔷":c==="PSG"?"🔵":c==="Athletic"?"🔴⚪":"⚫⚪"}
+function make(x,k){let e=document.createElement("div");if(seen[k]&&x[0]==="Haaland"){e.className="approvedCard";e.innerHTML='<img src="haaland-card.png" alt="Haaland FUTBOLAZO FC">';}else{e.className="fc "+(seen[k]?x[5]:"back");e.innerHTML=seen[k]?`<div class=cardTop><div class=brand>FUTBOLAZO FC</div><div class=pos>${x[1]}</div></div><div class=portrait><img src="${x[6]}" alt="${x[0]}"></div><div class=nm>${x[0].toUpperCase()}</div><div class=meta><div class=club><b>${clubIcon(x[2])}</b>${x[2]}</div><div class=nation><b>${x[3]}</b>${x[4]}</div></div>`:"◆";}e.onclick=()=>reveal(x,k);return e}
+function draw(){pitch.innerHTML="";P.forEach((x,i)=>{let s=document.createElement("div");s.className="slot";s.style.left=forms[current][i][0]+"%";s.style.top=forms[current][i][1]+"%";s.appendChild(make(x,"p"+i));pitch.appendChild(s)});bench.innerHTML="";B.forEach((x,i)=>{let w=document.createElement("div");w.className="benchItem";w.appendChild(make(x,"b"+i));let t=document.createElement("div");t.textContent=seen["b"+i]?x[0]:"Carta";w.appendChild(t);bench.appendChild(w)})}
+function openForms(){modal.classList.add("open");renderForms()}function closeForms(){modal.classList.remove("open")}function renderForms(){formList.innerHTML="";Object.keys(forms).forEach(f=>{let b=document.createElement("button");b.textContent=f;b.className=f===current?"selected":"";b.onclick=()=>{current=f;formBtn.textContent=f+" ▾";draw();closeForms()};formList.appendChild(b)})}
+function reveal(x,k){seen[k]=true;overlay.classList.add("show");s1.textContent=s2.textContent=s3.textContent=s4.textContent="";setTimeout(()=>s1.textContent="🏟️ "+x[2],150);setTimeout(()=>s2.textContent=x[3]+" "+x[4],800);setTimeout(()=>s3.textContent="⚽ "+x[1],1450);setTimeout(()=>s4.textContent=x[0],2150);setTimeout(draw,2250)}
+function closeR(){overlay.classList.remove("show")}function drawer(){shade.classList.toggle("open")}function go(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on")}draw();
+</script></body></html>
