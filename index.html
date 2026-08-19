@@ -17,7 +17,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .approvedCard{width:72px;height:106px;padding:0;background:none;filter:drop-shadow(0 7px 5px #000b);cursor:pointer}
 .approvedCard img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
 
-/* v2.3 — clean stadium + ONE interactive lineup */
+/* v2.4 — clean stadium + ONE interactive lineup */
 #team{
   margin-left:-14px;
   margin-right:-14px;
@@ -46,7 +46,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 #team .approvedCard,#team .fc{position:relative;z-index:6}
 
 
-/* v2.3 — compact XI spacing, matching approved mockup */
+/* v2.4 — compact XI spacing, matching approved mockup */
 #team .stadium{
   padding:92px 10px 18px !important;
 }
@@ -79,7 +79,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 }
 
 
-/* v2.3 — HOME */
+/* v2.4 — HOME */
 #home{padding:14px 14px 100px}
 .homeHero{
   border:1px solid #173c29;border-radius:22px;padding:18px;
@@ -119,8 +119,9 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .fixtureTeam{font-size:12px;font-weight:850}.fixtureTeam.right{text-align:right}
 .fixtureTime{text-align:center;font-size:11px;color:#8d9b93;font-weight:800}.fixtureTime b{display:block;color:#fff;font-size:13px;margin-top:2px}
 
-/* v2.3 MERCADO */
+/* v2.4 MERCADO */
 .marketWrap{padding:18px 14px 110px}.marketHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.marketEyebrow{font-size:11px;color:#7f8d84;font-weight:900;letter-spacing:.12em}.marketTitle{font-size:30px;font-weight:950}.marketMoney{color:#ffd34d;font-weight:950;font-size:17px}.marketTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#07110c;border:1px solid #173c29;padding:5px;border-radius:15px}.marketTab{border:0;background:transparent;color:#87948c;padding:10px 3px;border-radius:11px;font-weight:900;font-size:12px}.marketTab.active{background:#13251b;color:#73ff19}.marketTools{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}.marketSearch,.marketFilter{border:1px solid #173c29;background:#07110c;border-radius:14px;padding:12px;color:#aab4ae;font-size:12px;font-weight:800}.marketNotice{font-size:11px;color:#7f8d84;margin:10px 3px 8px}.marketList{display:flex;flex-direction:column;gap:9px}.marketPlayer{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;border:1px solid #173c29;background:#07110c;border-radius:17px;padding:11px}.marketAvatar{width:44px;height:55px;border-radius:10px;background:linear-gradient(145deg,#d8b43d,#8c6b10);display:grid;place-items:center;font-size:22px;border:1px solid #e8ce68}.marketInfo{min-width:0}.marketInfo b{display:block;font-size:13px}.marketInfo span,.marketInfo small{display:block;color:#87948c;font-size:10px;margin-top:3px}.marketBid{text-align:right}.marketBid strong{display:block;font-size:12px;margin-bottom:7px}.marketBid button{border:1px solid #4b8d2c;background:#13251b;color:#73ff19;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:950}
+.bidModal{position:fixed;inset:0;background:#000b;z-index:999;display:none;align-items:flex-end}.bidModal.show{display:flex}.bidBox{width:100%;background:#08110c;border-top:1px solid #285337;border-radius:24px 24px 0 0;padding:12px 18px 28px;box-shadow:0 -20px 60px #000}.bidGrab{width:42px;height:4px;border-radius:5px;background:#435048;margin:0 auto 18px}.bidLabel{font-size:10px;letter-spacing:.12em;color:#73ff19;font-weight:950}.bidBox h3{font-size:22px;margin:5px 0}.bidMeta{font-size:12px;color:#89968e}.bidInput{display:flex;align-items:center;margin:18px 0 8px;border:1px solid #285337;background:#050b07;border-radius:15px;padding:4px 12px}.bidInput input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:28px;font-weight:950;padding:10px 2px}.bidInput span{font-weight:950;color:#ffd34d}.bidHint{font-size:11px;color:#75827a;line-height:1.4}.bidActions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px;margin-top:18px}.bidActions button{padding:13px;border-radius:12px;border:1px solid #294233;background:#0d1711;color:#b6c0ba;font-weight:900}.bidActions .confirmBid{background:#142b18;border-color:#4b8d2c;color:#73ff19}.bidDone{display:none;text-align:center;color:#73ff19;font-weight:950;padding-top:14px}
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
   <div class="homeHero">
@@ -165,10 +166,10 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 <div class="marketTools"><div class="marketSearch">🔎 Buscar jugador</div><div class="marketFilter">☰ Filtros</div></div>
 <div class="marketNotice">⏱️ El mercado se actualiza cada día</div>
 <div class="marketList">
-<div class="marketPlayer"><div class="marketAvatar">⚽</div><div class="marketInfo"><b>Jude Bellingham</b><span>MC · Real Madrid</span><small>Valor 14,8 M€</small></div><div class="marketBid"><strong>15,2 M€</strong><button>PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">⚡</div><div class="marketInfo"><b>Nico Williams</b><span>EI · Athletic Club</span><small>Valor 10,4 M€</small></div><div class="marketBid"><strong>10,9 M€</strong><button>PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">🛡️</div><div class="marketInfo"><b>Ronald Araújo</b><span>DFC · Barcelona</span><small>Valor 9,7 M€</small></div><div class="marketBid"><strong>10,1 M€</strong><button>PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">🔥</div><div class="marketInfo"><b>Vlahović</b><span>DC · Juventus</span><small>Valor 11,3 M€</small></div><div class="marketBid"><strong>11,8 M€</strong><button>PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">⚽</div><div class="marketInfo"><b>Jude Bellingham</b><span>MC · Real Madrid</span><small>Valor 14,8 M€</small></div><div class="marketBid"><strong>15,2 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">⚡</div><div class="marketInfo"><b>Nico Williams</b><span>EI · Athletic Club</span><small>Valor 10,4 M€</small></div><div class="marketBid"><strong>10,9 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">🛡️</div><div class="marketInfo"><b>Ronald Araújo</b><span>DFC · Barcelona</span><small>Valor 9,7 M€</small></div><div class="marketBid"><strong>10,1 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar">🔥</div><div class="marketInfo"><b>Vlahović</b><span>DC · Juventus</span><small>Valor 11,3 M€</small></div><div class="marketBid"><strong>11,8 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
 </div></div></section>
 <section id="league" class="screen"><div class="muted">LIGA</div><h1>🏆 Clasificación</h1><div class="box"><p>🥇 Carlos FC <b style="float:right">53</b></p><p>🥈 Isma FC <b style="float:right">48</b></p><p>🥉 David FC <b style="float:right">46</b></p></div></section>
 <section id="profile" class="screen"><div class="muted">PERFIL</div><h1>👤 Isma FC</h1><div class="box"><h2>🏆 2 campeonatos</h2></div></section></main>
@@ -199,4 +200,31 @@ function draw(){pitch.innerHTML="";P.forEach((x,i)=>{let s=document.createElemen
 function openForms(){modal.classList.add("open");renderForms()}function closeForms(){modal.classList.remove("open")}function renderForms(){formList.innerHTML="";Object.keys(forms).forEach(f=>{let b=document.createElement("button");b.textContent=f;b.className=f===current?"selected":"";b.onclick=()=>{current=f;formBtn.textContent=f+" ▾";draw();closeForms()};formList.appendChild(b)})}
 function reveal(x,k){seen[k]=true;overlay.classList.add("show");s1.textContent=s2.textContent=s3.textContent=s4.textContent="";setTimeout(()=>s1.textContent="🏟️ "+x[2],150);setTimeout(()=>s2.textContent=x[3]+" "+x[4],800);setTimeout(()=>s3.textContent="⚽ "+x[1],1450);setTimeout(()=>s4.textContent=x[0],2150);setTimeout(draw,2250)}
 function closeR(){overlay.classList.remove("show")}function drawer(){shade.classList.toggle("open")}function go(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on")}draw();
-</script></body></html>
+</script><div id="bidModal" class="bidModal" onclick="if(event.target===this)closeBid()">
+<div class="bidBox"><div class="bidGrab"></div><div class="bidLabel">REALIZAR PUJA</div>
+<h3 id="bidPlayer">Jugador</h3><div class="bidMeta">Tu presupuesto: <b>26,6 M€</b></div>
+<div class="bidInput"><input id="bidAmount" type="number" step="0.1" inputmode="decimal" placeholder="0,0"><span>M€</span></div>
+<div class="bidHint">La oferta es privada. Los demás usuarios no verán tu cantidad.</div>
+<div class="bidActions"><button onclick="closeBid()">Cancelar</button><button class="confirmBid" onclick="confirmBid()">Confirmar puja</button></div>
+<div id="bidDone" class="bidDone">✓ Puja enviada</div></div></div>
+<script>
+let currentBidButton=null;
+function openBid(btn){
+ currentBidButton=btn;
+ const card=btn.closest('.marketPlayer');
+ document.getElementById('bidPlayer').textContent=card.querySelector('.marketInfo b').textContent;
+ const price=card.querySelector('.marketBid strong').textContent.replace(' M€','').replace(',','.');
+ document.getElementById('bidAmount').value=price;
+ document.getElementById('bidDone').style.display='none';
+ document.getElementById('bidModal').classList.add('show');
+}
+function closeBid(){document.getElementById('bidModal').classList.remove('show')}
+function confirmBid(){
+ const v=parseFloat(document.getElementById('bidAmount').value);
+ if(!v||v<=0)return;
+ document.getElementById('bidDone').style.display='block';
+ if(currentBidButton){currentBidButton.textContent='PUJA HECHA';currentBidButton.style.opacity='.65'}
+ setTimeout(closeBid,700);
+}
+</script>
+</body></html>
