@@ -191,11 +191,32 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 
 
 /* v2.7.3 — revelado secuencial */
-.revealLocked{opacity:.62!important;filter:saturate(.55)!important}
+.revealLocked{opacity:1!important;filter:none!important}
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 @keyframes nextPulse{50%{transform:scale(1.045);box-shadow:0 0 0 4px #73ff1933}}
 .revealProgress{margin:8px 14px 4px;text-align:center;color:#89968e;font-size:10px;font-weight:850}
 .revealProgress b{color:#73ff19}
+
+
+/* v2.7.5 — revelación: posición -> centro -> giro -> regreso */
+#overlay{pointer-events:none;background:transparent!important}
+#overlay.show{display:block!important}
+#overlay .reveal{display:none!important}
+.cineCard{
+ position:fixed;z-index:1500;perspective:900px;pointer-events:none;
+ transition:left .42s cubic-bezier(.2,.8,.2,1),top .42s cubic-bezier(.2,.8,.2,1),
+ width .42s,height .42s,transform .42s;
+}
+.cineInner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .58s cubic-bezier(.2,.8,.2,1)}
+.cineCard.flipped .cineInner{transform:rotateY(180deg)}
+.cineFace{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;overflow:hidden}
+.cineBack{display:grid;place-items:center;background:linear-gradient(145deg,#131c16,#030604);border:1px solid #38513f;color:#73ff19;font-size:34px;font-weight:950}
+.cineFront{transform:rotateY(180deg);background:#0b120d;border:1px solid #3b5541}
+.cineFront img{width:100%;height:100%;object-fit:contain;display:block}
+.cineFront .simpleFront{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;text-align:center}
+.cineFront .simpleFront img{height:68%;width:88%;object-fit:contain}
+.cineFront .simpleFront b{font-size:12px;margin-top:3px}
+.revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -291,7 +312,7 @@ const P=[
 ["Valverde","MC","Real Madrid","🇺🇾","Uruguay","pretty","valverde.svg"],
 ["Rüdiger","DFC","Real Madrid","🇩🇪","Alemania","weak","rudiger.svg"],
 ["Araújo","DFC","Barcelona","🇺🇾","Uruguay","normal","araujo.svg"],
-["Marquinhos","DFC","PSG","🇧🇷","Brasil","normal","marquinhos.svg"],
+["Marquinhos","LI","PSG","🇧🇷","Brasil","normal","marquinhos.svg"],
 ["Carvajal","LD","Real Madrid","🇪🇸","España","weak","carvajal.svg"],
 ["Courtois","POR","Real Madrid","🇧🇪","Bélgica","pretty","courtois.svg"]];
 const B=[
@@ -317,15 +338,49 @@ function make(x,k){
     if(!seen[k]){
       if(!canRevealKey(k))return;
       reveal(x,k);
-      setTimeout(()=>{advanceReveal();applyRevealLocks()},850);
     }else openPlayerSheet(x);
   };
   return e
 }
-function draw(){pitch.innerHTML="";P.forEach((x,i)=>{let s=document.createElement("div");s.className="slot";s.style.left=forms[current][i][0]+"%";s.style.top=forms[current][i][1]+"%";s.appendChild(make(x,"p"+i));pitch.appendChild(s)});bench.innerHTML="";B.forEach((x,i)=>{let w=document.createElement("div");w.className="benchItem";w.appendChild(make(x,"b"+i));let t=document.createElement("div");t.textContent=seen["b"+i]?x[0]:"Carta";w.appendChild(t);bench.appendChild(w)})}
+function draw(){pitch.innerHTML="";P.forEach((x,i)=>{let s=document.createElement("div");s.className="slot";s.style.left=forms[current][i][0]+"%";s.style.top=forms[current][i][1]+"%";s.appendChild(make(x,"p"+i));pitch.appendChild(s)});bench.innerHTML="";B.forEach((x,i)=>{let w=document.createElement("div");w.className="benchItem";w.appendChild(make(x,"b"+i));let t=document.createElement("div");t.textContent=seen["b"+i]?x[0]:"Carta";w.appendChild(t);bench.appendChild(w)}); if(revealSequence.length) setTimeout(applyRevealLocks,0)}
 function openForms(){modal.classList.add("open");renderForms()}function closeForms(){modal.classList.remove("open")}function renderForms(){formList.innerHTML="";Object.keys(forms).forEach(f=>{let b=document.createElement("button");b.textContent=f;b.className=f===current?"selected":"";b.onclick=()=>{current=f;formBtn.textContent=f+" ▾";draw();closeForms()};formList.appendChild(b)})}
-function reveal(x,k){seen[k]=true;overlay.classList.add("show");s1.textContent=s2.textContent=s3.textContent=s4.textContent="";setTimeout(()=>s1.textContent="🏟️ "+x[2],150);setTimeout(()=>s2.textContent=x[3]+" "+x[4],800);setTimeout(()=>s3.textContent="⚽ "+x[1],1450);setTimeout(()=>s4.textContent=x[0],2150);setTimeout(draw,2250)}
-function closeR(){overlay.classList.remove("show")}function drawer(){shade.classList.toggle("open")}function go(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on")}draw();
+function reveal(x,k){
+  const source=document.querySelector(`[data-reveal-key="${k}"]`);
+  if(!source)return;
+  const r=source.getBoundingClientRect();
+  const ghost=document.createElement("div");
+  ghost.className="cineCard";
+  ghost.style.left=r.left+"px"; ghost.style.top=r.top+"px";
+  ghost.style.width=r.width+"px"; ghost.style.height=r.height+"px";
+  const front=x[0]==="Haaland"
+    ? '<img src="haaland-card.png" alt="Haaland">'
+    : `<div class="simpleFront"><img src="${x[6]}" alt="${x[0]}"><b>${x[0].toUpperCase()}</b></div>`;
+  ghost.innerHTML=`<div class="cineInner"><div class="cineFace cineBack">◆</div><div class="cineFace cineFront">${front}</div></div>`;
+  document.body.appendChild(ghost);
+  source.style.visibility="hidden";
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const w=Math.min(150,window.innerWidth*.36), h=w*1.42;
+    ghost.style.width=w+"px"; ghost.style.height=h+"px";
+    ghost.style.left=((window.innerWidth-w)/2)+"px";
+    ghost.style.top=((window.innerHeight-h)/2)+"px";
+  }));
+
+  setTimeout(()=>ghost.classList.add("flipped"),480);
+  setTimeout(()=>{
+    ghost.classList.remove("flipped");
+    ghost.style.left=r.left+"px"; ghost.style.top=r.top+"px";
+    ghost.style.width=r.width+"px"; ghost.style.height=r.height+"px";
+  },1500);
+  setTimeout(()=>{
+    seen[k]=true;
+    ghost.remove();
+    draw();
+    advanceReveal();
+    applyRevealLocks();
+  },2150);
+}
+function closeR(){}function drawer(){shade.classList.toggle("open")}function go(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on")}draw();
 </script><div id="bidModal" class="bidModal" onclick="if(event.target===this)closeBid()">
 <div class="bidBox"><div class="bidGrab"></div><div class="bidLabel">REALIZAR PUJA</div>
 <h3 id="bidPlayer">Jugador</h3><div class="bidMeta">Tu presupuesto: <b>26,6 M€</b></div>
@@ -531,8 +586,7 @@ function revealRank(pos){
   return 6;
 }
 function buildRevealSequence(){
-  const team=document.getElementById('team');
-  if(!team)return;
+  const team=document.getElementById('team') || document;
   let cards=[...team.querySelectorAll('[data-reveal-key]')];
   let pitch=[],bench=[];
   cards.forEach((el,i)=>{
@@ -554,7 +608,7 @@ function applyRevealLocks(){
     el.classList.remove('revealLocked','revealNext');
     const k=el.dataset.revealKey;
     if(typeof seen!=='undefined' && !seen[k]){
-      if(revealSequence[revealStep]===k)el.classList.add('revealNext');
+      if(revealSequence[revealStep]===k) el.classList.add('revealNext');
       else el.classList.add('revealLocked');
     }
   });
