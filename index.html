@@ -9,7 +9,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .pitch{height:510px;position:relative;border:1px solid #72a87a;border-radius:14px;background:repeating-linear-gradient(90deg,#145124 0 38px,#1a5e2a 38px 76px);box-shadow:0 0 30px #32ff5228,inset 0 0 30px #001b08}.pitch:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff4a}.pitch:after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid #ffffff4a}
 .slot{position:absolute;transform:translate(-50%,-50%);z-index:3}.fc{width:68px;height:101px;clip-path:polygon(10% 0,90% 0,100% 7%,100% 87%,50% 100%,0 87%,0 7%);padding:4px 5px;display:flex;flex-direction:column;text-align:center;font-weight:1000;filter:drop-shadow(0 7px 5px #000b);position:relative;overflow:hidden}.fc:after{content:"";position:absolute;inset:1px;clip-path:inherit;border:1px solid #fff7;pointer-events:none}.back{background:linear-gradient(145deg,#101a13,#020503);outline:1px solid #7cff18;color:#7cff18;justify-content:center;font-size:22px}
 .pretty{background:radial-gradient(circle at 74% 18%,#fff8c7 0,#f5d76d 17%,#dda413 50%,#694300 100%);color:#160e00}.normal{background:linear-gradient(145deg,#f3df8f,#c8a13b 48%,#856119);color:#171000}.weak{background:linear-gradient(145deg,#c4934e,#8c5e25 48%,#503310);color:#fff0bf}.silver{background:linear-gradient(145deg,#f7f8f8,#cbd0d3 45%,#7f898f);color:#101315}
-.cardTop{display:flex;align-items:center;justify-content:space-between;height:12px}.brand{font-size:4.1px;letter-spacing:-.2px}.pos{font-size:8px}.portrait{height:51px;display:flex;align-items:end;justify-content:center;margin-top:-2px}.portrait img{width:48px;height:59px;object-fit:contain;filter:drop-shadow(0 2px 2px #0005)}.nm{font-size:7.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid #0003;padding-top:2px;letter-spacing:.2px}.meta{display:flex;justify-content:space-between;align-items:flex-end;font-size:5px;line-height:1.05}.club,.nation{width:49%;overflow:hidden;white-space:nowrap}.club b,.nation b{font-size:8px;display:block;line-height:1}.bench{display:flex;gap:11px;overflow:auto;padding-bottom:4px}.benchItem{text-align:center;font-size:10px}
+.cardTop{display:flex;align-items:center;justify-content:space-between;height:12px}.brand{font-size:4.1px;letter-spacing:-.2px}.pos{font-size:8px}.portrait{height:51px;display:flex;align-items:end;justify-content:center;margin-top:-2px}.portrait img{width:48px;height:59px;object-fit:contain;filter:drop-shadow(0 2px 2px #0005)}.nm{font-size:7.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid #0003;padding-top:2px;letter-spacing:.2px}.meta{display:flex;justify-content:space-between;align-items:flex-end;font-size:5px;line-height:1.05}.club,.nation{width:49%;overflow:hidden;white-space:nowrap}.club b,.nation b{font-size:8px;display:block;line-height:1}.bench{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;overflow:visible;padding:0 2px 8px}.benchItem{text-align:center;font-size:9px;min-width:0}.benchItem .fc,.benchItem .approvedCard{width:100%;max-width:72px;margin:auto}
 .tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;display:grid;grid-template-columns:repeat(5,1fr);background:#050b07f7;border-top:1px solid #203526;padding:8px 3px 12px;z-index:18}.tabs button{border:0;background:none;color:#89968e;font-size:10px;font-weight:900}.tabs button.on{color:#7cff18}.tabs span{display:block;font-size:19px}
 .shade,.modal,.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:30}.shade.open,.modal.open{display:block}.drawer{height:100%;width:min(78vw,330px);background:#07100b;padding:42px 18px}.league{padding:13px;background:#101b13;border-radius:13px;margin:9px 0}.league.on{border:1px solid #7cff18;background:#132719}.modal.open{display:grid;place-items:end center;padding:18px}.sheet{width:min(400px,100%);background:#0a130d;border:1px solid #294531;border-radius:22px;padding:17px}.formations{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.formations button{padding:14px;border-radius:12px;border:1px solid #2d4534;background:#101b13;color:#fff;font-weight:950}.formations button.selected{border-color:#7cff18;color:#7cff18}
 .overlay{z-index:50}.overlay.show{display:grid;place-items:center;padding:22px}.reveal{width:min(340px,92vw);text-align:center}.bigcard{height:430px;clip-path:polygon(9% 0,91% 0,100% 7%,100% 87%,50% 100%,0 87%,0 7%);background:radial-gradient(circle at 72% 18%,#fff8bd,#e3b22e 42%,#644400);color:#171000;padding:25px;display:flex;flex-direction:column;justify-content:center;gap:17px;filter:drop-shadow(0 0 28px #e8b42d66)}.stage{font-size:21px;font-weight:1000}.final{font-size:32px;font-weight:1000}
@@ -17,7 +17,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .approvedCard{width:72px;height:106px;padding:0;background:none;filter:drop-shadow(0 7px 5px #000b);cursor:pointer}
 .approvedCard img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
 
-/* v2.7.1 — clean stadium + ONE interactive lineup */
+/* v2.7.3 — clean stadium + ONE interactive lineup */
 #team{
   margin-left:-14px;
   margin-right:-14px;
@@ -46,7 +46,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 #team .approvedCard,#team .fc{position:relative;z-index:6}
 
 
-/* v2.7.1 — compact XI spacing, matching approved mockup */
+/* v2.7.3 — compact XI spacing, matching approved mockup */
 #team .stadium{
   padding:92px 10px 18px !important;
 }
@@ -79,7 +79,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 }
 
 
-/* v2.7.1 — HOME */
+/* v2.7.3 — HOME */
 #home{padding:14px 14px 100px}
 .homeHero{
   border:1px solid #173c29;border-radius:22px;padding:18px;
@@ -119,11 +119,11 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .fixtureTeam{font-size:12px;font-weight:850}.fixtureTeam.right{text-align:right}
 .fixtureTime{text-align:center;font-size:11px;color:#8d9b93;font-weight:800}.fixtureTime b{display:block;color:#fff;font-size:13px;margin-top:2px}
 
-/* v2.7.1 MERCADO */
+/* v2.7.3 MERCADO */
 .marketWrap{padding:18px 14px 110px}.marketHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.marketEyebrow{font-size:11px;color:#7f8d84;font-weight:900;letter-spacing:.12em}.marketTitle{font-size:30px;font-weight:950}.marketMoney{color:#ffd34d;font-weight:950;font-size:17px}.marketTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#07110c;border:1px solid #173c29;padding:5px;border-radius:15px}.marketTab{border:0;background:transparent;color:#87948c;padding:10px 3px;border-radius:11px;font-weight:900;font-size:12px}.marketTab.active{background:#13251b;color:#73ff19}.marketTools{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}.marketSearch,.marketFilter{border:1px solid #173c29;background:#07110c;border-radius:14px;padding:12px;color:#aab4ae;font-size:12px;font-weight:800}.marketNotice{font-size:11px;color:#7f8d84;margin:10px 3px 8px}.marketList{display:flex;flex-direction:column;gap:9px}.marketPlayer{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;border:1px solid #173c29;background:#07110c;border-radius:17px;padding:11px}.marketAvatar{width:44px;height:55px;border-radius:10px;background:linear-gradient(145deg,#d8b43d,#8c6b10);display:grid;place-items:center;font-size:22px;border:1px solid #e8ce68}.marketInfo{min-width:0}.marketInfo b{display:block;font-size:13px}.marketInfo span,.marketInfo small{display:block;color:#87948c;font-size:10px;margin-top:3px}.marketBid{text-align:right}.marketBid strong{display:block;font-size:12px;margin-bottom:7px}.marketBid button{border:1px solid #4b8d2c;background:#13251b;color:#73ff19;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:950}
 .bidModal{position:fixed;inset:0;background:#000b;z-index:999;display:none;align-items:flex-end}.bidModal.show{display:flex}.bidBox{width:100%;background:#08110c;border-top:1px solid #285337;border-radius:24px 24px 0 0;padding:12px 18px 28px;box-shadow:0 -20px 60px #000}.bidGrab{width:42px;height:4px;border-radius:5px;background:#435048;margin:0 auto 18px}.bidLabel{font-size:10px;letter-spacing:.12em;color:#73ff19;font-weight:950}.bidBox h3{font-size:22px;margin:5px 0}.bidMeta{font-size:12px;color:#89968e}.bidInput{display:flex;align-items:center;margin:18px 0 8px;border:1px solid #285337;background:#050b07;border-radius:15px;padding:4px 12px}.bidInput input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:28px;font-weight:950;padding:10px 2px}.bidInput span{font-weight:950;color:#ffd34d}.bidHint{font-size:11px;color:#75827a;line-height:1.4}.bidActions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px;margin-top:18px}.bidActions button{padding:13px;border-radius:12px;border:1px solid #294233;background:#0d1711;color:#b6c0ba;font-weight:900}.bidActions .confirmBid{background:#142b18;border-color:#4b8d2c;color:#73ff19}.bidDone{display:none;text-align:center;color:#73ff19;font-weight:950;padding-top:14px}
 
-/* v2.7.1 — functional market tabs */
+/* v2.7.3 — functional market tabs */
 .marketPane{display:none}
 .marketPane.active{display:block}
 .emptyState{
@@ -138,7 +138,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .bidStatus{font-size:10px;font-weight:950;color:#73ff19;background:#13251b;border:1px solid #285337;border-radius:999px;padding:7px 9px}
 
 
-/* v2.7.1 — Mis pujas */
+/* v2.7.3 — Mis pujas */
 .bidsSummary{
   display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0
 }
@@ -163,13 +163,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .bidActions2 .cancelBid{color:#ff7979;border-color:#5a2f2f}
 
 
-/* v2.7.1 — ficha de jugador + banquillo */
-.benchBlock{margin:12px 14px 110px}
-.benchHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font-size:18px;font-weight:950}
-.benchHead small{font-size:11px;color:#819087}
-.benchSlots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.benchSlot{height:86px;border:1px dashed #41604d;border-radius:14px;background:#07110c;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#73ff19}
-.benchSlot span{font-size:26px;line-height:1}.benchSlot b{font-size:10px;margin-top:6px;color:#a4b0a8}
+/* v2.7.3 — ficha de jugador */
 .playerSheet{position:fixed;inset:0;background:#000b;z-index:1200;display:none;align-items:flex-end}
 .playerSheet.show{display:flex}
 .playerSheetBox{width:100%;background:#08110c;border-top:1px solid #285337;border-radius:24px 24px 0 0;padding:12px 18px 28px;box-shadow:0 -20px 60px #000}
@@ -193,10 +187,15 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .sellDone{display:none;text-align:center;color:#73ff19;font-weight:950;padding-top:10px}
 
 
-.benchBlock{margin:14px 14px 105px!important}
-.benchSlots{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
-.benchSlot{height:112px!important;min-width:0!important;border:1px solid #33483b!important;border-radius:10px!important;background:linear-gradient(145deg,#101813,#050907)!important}
-.benchSlot span{font-size:25px!important}.benchSlot b{font-size:10px!important}
+
+
+
+/* v2.7.3 — revelado secuencial */
+.revealLocked{opacity:.62!important;filter:saturate(.55)!important}
+.revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
+@keyframes nextPulse{50%{transform:scale(1.045);box-shadow:0 0 0 4px #73ff1933}}
+.revealProgress{margin:8px 14px 4px;text-align:center;color:#89968e;font-size:10px;font-weight:850}
+.revealProgress b{color:#73ff19}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -236,14 +235,6 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 <section id="team" class="screen"><div class="box" style="padding:10px 12px;margin-top:0;font-size:11px">
 <b>Categorías:</b> ✨ Oro bonito · 🟡 Oro normal · 🟤 Oro flojo · ⚪ Plata
 </div><div class="row"><div><div class="muted">MI PLANTILLA</div><h1>11 inicial</h1></div><button id="formBtn" class="formation" onclick="openForms()" style="padding:9px 12px">4-3-3 ▾</button></div><div class="stadium"><div class="stands"></div><div class="flood"></div><div id="pitch" class="pitch"></div></div><h2>🪑 Banquillo</h2><div id="bench" class="bench"></div>
-<div class="benchBlock">
-  <div class="benchHead"><span>🪑 Banquillo</span><small>4 suplentes</small></div>
-  <div class="benchSlots">
-    <div class="benchSlot" data-pos="POR"><span>◆</span><b>POR</b></div>
-    <div class="benchSlot" data-pos="DEF"><span>◆</span><b>DEF</b></div>
-    <div class="benchSlot" data-pos="MC"><span>◆</span><b>MC</b></div>
-    <div class="benchSlot" data-pos="DL"><span>◆</span><b>DL</b></div>
-  </div>
 </div>
 </section>
 <section id="market" class="screen"><div class="marketWrap">
@@ -304,12 +295,17 @@ const P=[
 ["Carvajal","LD","Real Madrid","🇪🇸","España","weak","carvajal.svg"],
 ["Courtois","POR","Real Madrid","🇧🇪","Bélgica","pretty","courtois.svg"]];
 const B=[
-["Nico Williams","EI","Athletic","🇪🇸","España","normal","nico.svg"],
-["Vlahović","DC","Juventus","🇷🇸","Serbia","normal","vlahovic.svg"]];
+["Courtois","POR","Real Madrid","🇧🇪","Bélgica","pretty","courtois.svg"],
+["Araújo","DEF","Barcelona","🇺🇾","Uruguay","normal","araujo.svg"],
+["Valverde","MC","Real Madrid","🇺🇾","Uruguay","pretty","valverde.svg"],
+["Vlahović","DL","Juventus","🇷🇸","Serbia","normal","vlahovic.svg"]];
 const forms={"4-3-3":[[50,23],[24,30],[76,30],[28,49],[50,49],[72,49],[15,68],[38,68],[62,68],[85,68],[50,84]],"4-4-2":[[35,17],[65,17],[14,46],[38,46],[62,46],[86,46],[14,73],[38,73],[62,73],[86,73],[50,91]],"4-2-3-1":[[50,12],[18,34],[50,32],[82,34],[35,52],[65,52],[14,74],[38,74],[62,74],[86,74],[50,91]],"4-3-1-2":[[34,16],[66,16],[50,34],[22,51],[50,54],[78,51],[14,74],[38,74],[62,74],[86,74],[50,91]],"3-5-2":[[34,14],[66,14],[10,45],[30,48],[50,48],[70,48],[90,45],[25,73],[50,75],[75,73],[50,91]],"5-3-2":[[34,14],[66,14],[22,48],[50,50],[78,48],[8,73],[29,75],[50,76],[71,75],[92,73],[50,91]]};let current="4-3-3",seen={};
 function clubIcon(c){return c==="Real Madrid"?"⚪":c==="Barcelona"?"🔵🔴":c==="Man. City"?"🔷":c==="PSG"?"🔵":c==="Athletic"?"🔴⚪":"⚫⚪"}
 function make(x,k){
   let e=document.createElement("div");
+  e.dataset.revealKey=k;
+  e.dataset.playerName=x[0];
+  e.dataset.playerPos=x[1];
   if(seen[k]&&x[0]==="Haaland"){
     e.className="approvedCard";
     e.innerHTML='<img src="haaland-card.png" alt="Haaland FUTBOLAZO FC">';
@@ -318,8 +314,11 @@ function make(x,k){
     e.innerHTML=seen[k]?`<div class=cardTop><div class=brand>FUTBOLAZO FC</div><div class=pos>${x[1]}</div></div><div class=portrait><img src="${x[6]}" alt="${x[0]}"></div><div class=nm>${x[0].toUpperCase()}</div><div class=meta><div class=club><b>${clubIcon(x[2])}</b>${x[2]}</div><div class=nation><b>${x[3]}</b>${x[4]}</div></div>`:"◆";
   }
   e.onclick=()=>{
-    if(!seen[k]) reveal(x,k);
-    else openPlayerSheet(x);
+    if(!seen[k]){
+      if(!canRevealKey(k))return;
+      reveal(x,k);
+      setTimeout(()=>{advanceReveal();applyRevealLocks()},850);
+    }else openPlayerSheet(x);
   };
   return e
 }
@@ -515,6 +514,59 @@ function toggleLock(){
   try{localStorage.setItem('futbolazo_locked_players',JSON.stringify(lockedPlayers))}catch(e){}
   alert(lockedPlayers[currentSheetPlayer[0]]?'Jugador bloqueado durante 1 semana':'Bloqueo retirado');
 }
+</script>
+
+
+<script>
+let revealSequence=[], revealStep=0;
+
+function revealRank(pos){
+  pos=(pos||'').toUpperCase();
+  if(pos.includes('POR')||pos==='GK') return 0;
+  if(pos.includes('DFC')||pos==='DEF'||pos==='CB') return 1;
+  if(pos.includes('LD')||pos.includes('LI')||pos.includes('LAT')||pos==='RB'||pos==='LB') return 2;
+  if(pos.includes('MC')||pos.includes('MCD')||pos.includes('MCO')||pos==='CM') return 3;
+  if(pos.includes('EI')||pos.includes('ED')||pos.includes('EXT')||pos==='LW'||pos==='RW') return 4;
+  if(pos.includes('DC')||pos==='DL'||pos==='ST') return 5;
+  return 6;
+}
+function buildRevealSequence(){
+  const team=document.getElementById('team');
+  if(!team)return;
+  let cards=[...team.querySelectorAll('[data-reveal-key]')];
+  let pitch=[],bench=[];
+  cards.forEach((el,i)=>{
+    const isBench=!!el.closest('.bench,.benchItem');
+    (isBench?bench:pitch).push({el,i,pos:el.dataset.playerPos,key:el.dataset.revealKey});
+  });
+  pitch.sort((a,b)=>revealRank(a.pos)-revealRank(b.pos)||a.i-b.i);
+  revealSequence=[...pitch,...bench].map(x=>x.key);
+  revealStep=0;
+  while(revealStep<revealSequence.length && typeof seen!=='undefined' && seen[revealSequence[revealStep]]) revealStep++;
+  applyRevealLocks();
+}
+function canRevealKey(k){return revealSequence.length===0 || revealSequence[revealStep]===k}
+function advanceReveal(){
+  while(revealStep<revealSequence.length && typeof seen!=='undefined' && seen[revealSequence[revealStep]]) revealStep++;
+}
+function applyRevealLocks(){
+  document.querySelectorAll('[data-reveal-key]').forEach(el=>{
+    el.classList.remove('revealLocked','revealNext');
+    const k=el.dataset.revealKey;
+    if(typeof seen!=='undefined' && !seen[k]){
+      if(revealSequence[revealStep]===k)el.classList.add('revealNext');
+      else el.classList.add('revealLocked');
+    }
+  });
+  let info=document.getElementById('revealProgress');
+  if(!info){
+    info=document.createElement('div');info.id='revealProgress';info.className='revealProgress';
+    const team=document.getElementById('team');
+    if(team)team.insertBefore(info,team.firstChild);
+  }
+  if(info)info.innerHTML=revealStep<revealSequence.length?`Descubrimiento del equipo · <b>${revealStep+1}/${revealSequence.length}</b>`:`<b>Equipo descubierto</b>`;
+}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(buildRevealSequence,120));
 </script>
 
 </body></html>
