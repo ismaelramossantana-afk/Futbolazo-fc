@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.7.6 — revelación: posición -> centro -> giro -> regreso */
+/* v2.7.7 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.7.6 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.7.7 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -229,6 +229,20 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .premiumCard .pcName{position:absolute;left:5px;right:5px;bottom:19px;font-size:6.7px;font-weight:1000;color:#fff1ae;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 2px #000}
 .premiumCard .pcMeta{position:absolute;left:0;right:0;bottom:8px;font-size:7px}
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
+
+
+/* v2.7.7 — cláusulas */
+.clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
+.clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
+.clausePanel.show{display:block}
+.clauseSummary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.clauseSummary>div{background:#080b08;border:1px solid #263126;border-radius:10px;padding:8px}
+.clauseSummary span{display:block;font-size:8px;color:#849087}.clauseSummary b{display:block;font-size:11px;margin-top:3px;color:#fff}
+.clauseInput{display:flex;align-items:center;margin-top:9px;border:1px solid #5b4c20;border-radius:10px;background:#070806;padding:0 9px}
+.clauseInput input{width:100%;border:0;outline:0;background:transparent;color:#fff;padding:10px 2px;font-weight:900}.clauseInput span{color:#ffd86b;font-weight:950}
+.clauseHelp{font-size:9px;color:#89938d;line-height:1.4;margin:7px 2px}
+.confirmClause{width:100%;padding:11px;border-radius:10px;border:1px solid #806a28;background:#211b08;color:#ffd86b;font-weight:950}
+.clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -547,10 +561,22 @@ document.addEventListener('DOMContentLoaded', renderBids);
     </div>
     <div class="sheetActions">
       <button class="sellBtn" onclick="startSell()">💰 Poner en venta</button>
+<button class="clauseBtn" onclick="openClausePanel()">⬆️ Subir cláusula</button>
       <button onclick="toggleLock()">🔒 Bloquear jugador</button>
       <button onclick="closePlayerSheet()">🔁 Cambiar jugador</button>
     </div>
-    <div id="sellPanel" class="sellPanel">
+    <div id="clausePanel" class="clausePanel">
+  <div class="clauseSummary">
+    <div><span>Cláusula actual</span><b id="currentClause">—</b></div>
+    <div><span>Subidas disponibles</span><b id="clauseChances">3/3</b></div>
+    <div><span>Aumento usado</span><b id="clauseUsed">0/30 M€</b></div>
+  </div>
+  <div class="clauseInput"><input id="clauseRaise" type="number" step="0.1" min="0.1" inputmode="decimal" placeholder="Cantidad a subir"><span>M€</span></div>
+  <div id="clauseHelp" class="clauseHelp">Puedes repartir el aumento máximo entre tus 3 oportunidades.</div>
+  <button class="confirmClause" onclick="confirmClauseRaise()">Confirmar subida</button>
+  <div id="clauseDone" class="clauseDone"></div>
+</div>
+<div id="sellPanel" class="sellPanel">
       <div class="sellInput"><input id="sellPrice" type="number" step="0.1" inputmode="decimal" placeholder="Precio"><span>M€</span></div>
       <button class="confirmSell" onclick="confirmSell()">Confirmar venta</button>
     </div>
@@ -574,6 +600,7 @@ function openPlayerSheet(x){
   document.getElementById('sheetPoints').textContent=(x[0]==='Haaland'?'42 pts':'—');
   document.getElementById('sheetCardImg').src=x[0]==='Haaland'?'haaland-card.png':x[6];
   document.getElementById('sellPanel').classList.remove('show');
+  const cp=document.getElementById('clausePanel'); if(cp)cp.classList.remove('show');
   document.getElementById('sellDone').style.display='none';
   document.getElementById('playerSheet').classList.add('show');
 }
@@ -647,6 +674,65 @@ function applyRevealLocks(){
   if(info)info.innerHTML=revealStep<revealSequence.length?`Descubrimiento del equipo · <b>${revealStep+1}/${revealSequence.length}</b>`:`<b>Equipo descubierto</b>`;
 }
 document.addEventListener('DOMContentLoaded',()=>setTimeout(buildRevealSequence,120));
+</script>
+
+
+<script>
+let clauseState={};
+try{clauseState=JSON.parse(localStorage.getItem('futbolazo_clause_state')||'{}')}catch(e){}
+function saveClauseState(){try{localStorage.setItem('futbolazo_clause_state',JSON.stringify(clauseState))}catch(e){}}
+
+function getClauseRecord(name){
+ if(!clauseState[name]){
+   let base=name==='Haaland'?20:10;
+   clauseState[name]={clause:base,spell:1,raises:0,used:0,ownedBefore:true};
+   saveClauseState();
+ }
+ return clauseState[name];
+}
+function openClausePanel(){
+ if(!currentSheetPlayer)return;
+ document.getElementById('sellPanel').classList.remove('show');
+ document.getElementById('clausePanel').classList.toggle('show');
+ document.getElementById('clauseDone').textContent='';
+ renderClausePanel();
+}
+function renderClausePanel(){
+ if(!currentSheetPlayer)return;
+ const r=getClauseRecord(currentSheetPlayer[0]);
+ const limit=r.spell===1?30:15;
+ document.getElementById('currentClause').textContent=r.clause.toFixed(1).replace('.',',')+' M€';
+ document.getElementById('clauseChances').textContent=(3-r.raises)+'/3';
+ document.getElementById('clauseUsed').textContent=r.used.toFixed(1).replace('.',',')+'/'+limit+' M€';
+ document.getElementById('clauseHelp').textContent='Máximo restante en esta etapa: '+Math.max(0,limit-r.used).toFixed(1).replace('.',',')+' M€ · '+(3-r.raises)+' oportunidades.';
+}
+function confirmClauseRaise(){
+ if(!currentSheetPlayer)return;
+ const r=getClauseRecord(currentSheetPlayer[0]), limit=r.spell===1?30:15;
+ const amount=parseFloat(document.getElementById('clauseRaise').value);
+ const done=document.getElementById('clauseDone');
+ if(r.raises>=3){done.textContent='Ya has utilizado las 3 subidas.';return}
+ if(!amount||amount<=0){done.textContent='Introduce una cantidad válida.';return}
+ if(r.used+amount>limit){done.textContent='Supera el máximo restante de '+(limit-r.used).toFixed(1).replace('.',',')+' M€.';return}
+ r.clause+=amount;r.used+=amount;r.raises+=1;saveClauseState();renderClausePanel();
+ done.textContent='✓ Nueva cláusula: '+r.clause.toFixed(1).replace('.',',')+' M€';
+ document.getElementById('clauseRaise').value='';
+}
+/* Se usará al ejecutar una cláusula entre usuarios:
+   +15% automático sobre la cláusula pagada; no consume subidas.
+   returning=true si ese propietario ya tuvo antes al jugador. */
+function receiveByClause(playerName,paidClause,returning){
+ const autoRaise=paidClause*0.15;
+ clauseState[playerName]={
+   clause:paidClause+autoRaise,
+   spell:returning?2:1,
+   raises:0,
+   used:0,
+   ownedBefore:true
+ };
+ saveClauseState();
+ return clauseState[playerName];
+}
 </script>
 
 </body></html>
