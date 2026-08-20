@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.7.7 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.0 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.7.7 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.0 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.7.7 — cláusulas */
+/* v2.8.0 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -466,13 +466,15 @@ function confirmBid(){
   const card=currentBidButton.closest('.marketPlayer');
   const player=card.querySelector('.marketInfo b').textContent;
   const meta=card.querySelector('.marketInfo span').textContent;
+  const valueText=card.querySelector('.marketInfo small')?.textContent || '';
+  const marketValue=parseFloat((valueText.match(/[0-9]+(?:[.,][0-9]+)?/)||['0'])[0].replace(',','.')) || 0;
   const shown=amount.toFixed(1).replace('.',',')+' M€';
   const now=Date.now();
   const existing=activeBids.find(x=>x.player===player);
   if(existing){
-    existing.amount=shown; existing.rawAmount=amount; existing.updatedAt=now;
+    existing.amount=shown; existing.rawAmount=amount; existing.marketValue=marketValue; existing.updatedAt=now;
   }else{
-    activeBids.push({player,meta,amount:shown,rawAmount:amount,updatedAt:now});
+    activeBids.push({player,meta,amount:shown,rawAmount:amount,marketValue,updatedAt:now});
   }
   saveBids();
   renderBids();
@@ -678,20 +680,35 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(buildRevealSequence,
 
 
 <script>
+function getPlayerMarketValue(name){
+  if(name==='Haaland') return 18.5;
+  if(name==='Courtois') return 12.0;
+  return 10.0;
+}
 let clauseState={};
 try{clauseState=JSON.parse(localStorage.getItem('futbolazo_clause_state')||'{}')}catch(e){}
 function saveClauseState(){try{localStorage.setItem('futbolazo_clause_state',JSON.stringify(clauseState))}catch(e){}}
 
 function getClauseRecord(name){
  if(!clauseState[name]){
-   let base=name==='Haaland'?20:10;
+   let base = getPlayerMarketValue(name);
    clauseState[name]={clause:base,spell:1,raises:0,used:0,ownedBefore:true};
    saveClauseState();
  }
  return clauseState[name];
 }
+function syncUntouchedClauseToPlayerValue(){
+ if(!currentSheetPlayer)return;
+ const name=currentSheetPlayer[0];
+ const actual=getPlayerMarketValue(name);
+ const r=clauseState[name];
+ if(r && r.raises===0 && r.used===0 && Math.abs(r.clause-actual)>0.001){
+   r.clause=actual; saveClauseState();
+ }
+}
 function openClausePanel(){
  if(!currentSheetPlayer)return;
+ syncUntouchedClauseToPlayerValue();
  document.getElementById('sellPanel').classList.remove('show');
  document.getElementById('clausePanel').classList.toggle('show');
  document.getElementById('clauseDone').textContent='';
@@ -704,7 +721,7 @@ function renderClausePanel(){
  document.getElementById('currentClause').textContent=r.clause.toFixed(1).replace('.',',')+' M€';
  document.getElementById('clauseChances').textContent=(3-r.raises)+'/3';
  document.getElementById('clauseUsed').textContent=r.used.toFixed(1).replace('.',',')+'/'+limit+' M€';
- document.getElementById('clauseHelp').textContent='Máximo restante en esta etapa: '+Math.max(0,limit-r.used).toFixed(1).replace('.',',')+' M€ · '+(3-r.raises)+' oportunidades.';
+ document.getElementById('clauseHelp').textContent='Máximo restante en esta etapa: '+Math.max(0,limit-r.used).toFixed(1).replace('.',',')+' M€ · '+(3-r.raises)+' oportunidades. Si llegó por puja, su cláusula inicial fue el precio pagado con tope de valor +15 M€.';
 }
 function confirmClauseRaise(){
  if(!currentSheetPlayer)return;
@@ -732,6 +749,46 @@ function receiveByClause(playerName,paidClause,returning){
  };
  saveClauseState();
  return clauseState[playerName];
+}
+</script>
+
+
+<script>
+/* v2.8.0 — cláusula inicial al ganar una puja del mercado cerrado
+   Regla:
+   cláusula inicial = precio pagado,
+   con tope de valor de mercado + 15 M€.
+   Nunca puede quedar por debajo del valor de mercado.
+*/
+function initialClauseFromMarketBid(playerName, marketValue, paidPrice){
+  const value = Number(marketValue) || 0;
+  const paid = Number(paidPrice) || value;
+  const maxClause = value + 15;
+  const initialClause = Math.max(value, Math.min(paid, maxClause));
+
+  clauseState[playerName] = {
+    clause: initialClause,
+    spell: 1,
+    raises: 0,
+    used: 0,
+    ownedBefore: true,
+    source: 'market_bid',
+    marketValueAtPurchase: value,
+    paidPrice: paid
+  };
+  saveClauseState();
+  return initialClause;
+}
+
+/* Esta función se llamará cuando la puja quede resuelta como GANADA. */
+function resolveWinningBid(playerName, marketValue, paidPrice){
+  const clause = initialClauseFromMarketBid(playerName, marketValue, paidPrice);
+  return {
+    player: playerName,
+    marketValue,
+    paidPrice,
+    initialClause: clause
+  };
 }
 </script>
 
