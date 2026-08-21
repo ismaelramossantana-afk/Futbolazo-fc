@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.0 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.1 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.0 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.1 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.0 — cláusulas */
+/* v2.8.1 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -347,6 +347,13 @@ const B=[
 ["Valverde","MC","Real Madrid","🇺🇾","Uruguay","pretty","valverde.svg"],
 ["Vlahović","DL","Juventus","🇷🇸","Serbia","normal","vlahovic.svg"]];
 const forms={"4-3-3":[[50,23],[24,30],[76,30],[28,49],[50,49],[72,49],[15,68],[38,68],[62,68],[85,68],[50,84]],"4-4-2":[[35,17],[65,17],[14,46],[38,46],[62,46],[86,46],[14,73],[38,73],[62,73],[86,73],[50,91]],"4-2-3-1":[[50,12],[18,34],[50,32],[82,34],[35,52],[65,52],[14,74],[38,74],[62,74],[86,74],[50,91]],"4-3-1-2":[[34,16],[66,16],[50,34],[22,51],[50,54],[78,51],[14,74],[38,74],[62,74],[86,74],[50,91]],"3-5-2":[[34,14],[66,14],[10,45],[30,48],[50,48],[70,48],[90,45],[25,73],[50,75],[75,73],[50,91]],"5-3-2":[[34,14],[66,14],[22,48],[50,50],[78,48],[8,73],[29,75],[50,76],[71,75],[92,73],[50,91]]};let current="4-3-3",seen={};
+try{seen=JSON.parse(localStorage.getItem("futbolazo_revealed_team")||"{}")}catch(e){seen={}}
+function saveRevealedTeam(){try{localStorage.setItem("futbolazo_revealed_team",JSON.stringify(seen))}catch(e){}}
+function markTeamDiscoveryComplete(){
+  if(revealSequence.length && revealSequence.every(k=>seen[k])){
+    try{localStorage.setItem("futbolazo_team_discovered","1")}catch(e){}
+  }
+}
 function clubIcon(c){return c==="Real Madrid"?"⚪":c==="Barcelona"?"🔵🔴":c==="Man. City"?"🔷":c==="PSG"?"🔵":c==="Athletic"?"🔴⚪":"⚫⚪"}
 
 function premiumHTML(x){
@@ -414,13 +421,23 @@ function reveal(x,k){
   },1500);
   setTimeout(()=>{
     seen[k]=true;
+    saveRevealedTeam();
+    markTeamDiscoveryComplete();
     ghost.remove();
     draw();
     advanceReveal();
     applyRevealLocks();
   },2150);
 }
-function closeR(){}function drawer(){shade.classList.toggle("open")}function go(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on")}draw();
+function closeR(){}function drawer(){shade.classList.toggle("open")}function go(id,b){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));
+ let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on");
+ window.scrollTo({top:0,left:0,behavior:"instant"});
+ document.documentElement.scrollTop=0;document.body.scrollTop=0;
+ if(id==="team")setTimeout(()=>{draw();buildRevealSequence()},0);
+}draw();
 </script><div id="bidModal" class="bidModal" onclick="if(event.target===this)closeBid()">
 <div class="bidBox"><div class="bidGrab"></div><div class="bidLabel">REALIZAR PUJA</div>
 <h3 id="bidPlayer">Jugador</h3><div class="bidMeta">Tu presupuesto: <b>26,6 M€</b></div>
@@ -650,6 +667,7 @@ function buildRevealSequence(){
   });
   pitch.sort((a,b)=>revealRank(a.pos)-revealRank(b.pos)||a.i-b.i);
   revealSequence=[...pitch,...bench].map(x=>x.key);
+  try{if(localStorage.getItem("futbolazo_team_discovered")==="1"){revealSequence.forEach(k=>seen[k]=true);saveRevealedTeam()}}catch(e){}
   revealStep=0;
   while(revealStep<revealSequence.length && typeof seen!=='undefined' && seen[revealSequence[revealStep]]) revealStep++;
   applyRevealLocks();
@@ -673,7 +691,10 @@ function applyRevealLocks(){
     const team=document.getElementById('team');
     if(team)team.insertBefore(info,team.firstChild);
   }
-  if(info)info.innerHTML=revealStep<revealSequence.length?`Descubrimiento del equipo · <b>${revealStep+1}/${revealSequence.length}</b>`:`<b>Equipo descubierto</b>`;
+  if(info){
+    if(revealStep<revealSequence.length){info.style.display="block";info.innerHTML=`Descubrimiento del equipo · <b>${revealStep+1}/${revealSequence.length}</b>`}
+    else{info.style.display="none";markTeamDiscoveryComplete()}
+  }
 }
 document.addEventListener('DOMContentLoaded',()=>setTimeout(buildRevealSequence,120));
 </script>
@@ -754,7 +775,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.0 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.1 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
