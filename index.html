@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.4 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.5 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.4 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.5 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.4 — cláusulas */
+/* v2.8.5 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -245,7 +245,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
 
 
-/* v2.8.4 — corrección definitiva del hueco negro al cambiar de pestaña */
+/* v2.8.5 — corrección definitiva del hueco negro al cambiar de pestaña */
 #market,#league,#profile{
   margin-top:0!important;
   padding-top:0!important;
@@ -258,7 +258,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .screen{scroll-margin-top:70px}
 
 
-/* v2.8.4 — navegación móvil sin arrastre del scroll entre pestañas */
+/* v2.8.5 — navegación móvil sin arrastre del scroll entre pestañas */
 html,body{height:100%;overflow:hidden!important}
 body{overscroll-behavior:none}
 .app{
@@ -298,6 +298,70 @@ main{
 #market,#league,#profile{padding-top:0!important;margin-top:0!important}
 #market .marketWrap{padding-top:4px!important}
 #league,#profile{padding-top:4px!important}
+
+
+/* v2.8.5 — estructura móvil estable: cada pestaña tiene su propio scroll */
+html,body{
+  margin:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  background:#010302!important;
+}
+.app{
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  max-width:430px!important;
+  height:100dvh!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:0!important;
+  display:block!important;
+  overflow:hidden!important;
+  background:#020604!important;
+}
+header{
+  position:absolute!important;
+  top:0!important;left:0!important;right:0!important;
+  height:70px!important;
+  z-index:50!important;
+}
+main{
+  position:absolute!important;
+  top:70px!important;
+  bottom:74px!important;
+  left:0!important;right:0!important;
+  padding:0!important;
+  margin:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.screen{
+  display:none!important;
+  position:absolute!important;
+  inset:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  padding:14px!important;
+  margin:0!important;
+}
+.screen.active{display:block!important}
+#market.screen{padding:0!important}
+#market .marketWrap{padding:18px 14px 110px!important;margin:0!important}
+#league.screen,#profile.screen{padding:14px 0 100px!important}
+.tabs{
+  position:absolute!important;
+  left:0!important;right:0!important;bottom:0!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:74px!important;
+  z-index:60!important;
+  padding:8px 3px 10px!important;
+}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -485,15 +549,19 @@ function reveal(x,k){
 }
 function closeR(){}function drawer(){shade.classList.toggle("open")}function go(id,b){
  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ const target=document.getElementById(id);
+ target.classList.add("active");
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));
  let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on");
- const resetPageTop=()=>{
-   const main=document.querySelector("main");
-   if(main){ main.scrollTop=0; main.scrollTo({top:0,left:0,behavior:"auto"}); }
+
+ const resetTarget=()=>{
+   target.scrollTop=0;
+   try{target.scrollTo({top:0,left:0,behavior:"auto"})}catch(e){}
  };
- resetPageTop();
- requestAnimationFrame(resetPageTop);
+ resetTarget();
+ requestAnimationFrame(resetTarget);
+ setTimeout(resetTarget,40);
+
  if(id==="team")setTimeout(()=>{draw();buildRevealSequence()},0);
 }draw();
 </script><div id="bidModal" class="bidModal" onclick="if(event.target===this)closeBid()">
@@ -833,7 +901,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.4 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.5 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
