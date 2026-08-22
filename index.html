@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.1 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.2 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.1 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.2 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.1 — cláusulas */
+/* v2.8.2 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -243,6 +243,19 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .clauseHelp{font-size:9px;color:#89938d;line-height:1.4;margin:7px 2px}
 .confirmClause{width:100%;padding:11px;border-radius:10px;border:1px solid #806a28;background:#211b08;color:#ffd86b;font-weight:950}
 .clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
+
+
+/* v2.8.2 — corrección definitiva del hueco negro al cambiar de pestaña */
+#market,#league,#profile{
+  margin-top:0!important;
+  padding-top:0!important;
+  min-height:0!important;
+  height:auto!important;
+  transform:none!important;
+}
+#market .marketWrap{margin-top:0!important;padding-top:18px!important}
+#league,#profile{padding:18px 0 100px!important}
+.screen{scroll-margin-top:70px}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -434,8 +447,17 @@ function closeR(){}function drawer(){shade.classList.toggle("open")}function go(
  document.getElementById(id).classList.add("active");
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));
  let q=b||document.querySelector(`[data-id="${id}"]`);if(q)q.classList.add("on");
- window.scrollTo({top:0,left:0,behavior:"instant"});
- document.documentElement.scrollTop=0;document.body.scrollTop=0;
+ const resetPageTop=()=>{
+   window.scrollTo(0,0);
+   document.documentElement.scrollTop=0;
+   document.body.scrollTop=0;
+   const app=document.querySelector(".app"); if(app)app.scrollTop=0;
+   const main=document.querySelector("main"); if(main)main.scrollTop=0;
+ };
+ resetPageTop();
+ requestAnimationFrame(resetPageTop);
+ setTimeout(resetPageTop,30);
+ setTimeout(resetPageTop,120);
  if(id==="team")setTimeout(()=>{draw();buildRevealSequence()},0);
 }draw();
 </script><div id="bidModal" class="bidModal" onclick="if(event.target===this)closeBid()">
@@ -775,7 +797,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.1 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.2 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
