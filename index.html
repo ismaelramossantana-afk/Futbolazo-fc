@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.6 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.7 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.6 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.7 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.6 — cláusulas */
+/* v2.8.7 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -245,7 +245,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
 
 
-/* v2.8.6 — corrección definitiva del hueco negro al cambiar de pestaña */
+/* v2.8.7 — corrección definitiva del hueco negro al cambiar de pestaña */
 #market,#league,#profile{
   margin-top:0!important;
   padding-top:0!important;
@@ -258,7 +258,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .screen{scroll-margin-top:70px}
 
 
-/* v2.8.6 — navegación móvil sin arrastre del scroll entre pestañas */
+/* v2.8.7 — navegación móvil sin arrastre del scroll entre pestañas */
 html,body{height:100%;overflow:hidden!important}
 body{overscroll-behavior:none}
 .app{
@@ -300,7 +300,7 @@ main{
 #league,#profile{padding-top:4px!important}
 
 
-/* v2.8.6 — estructura móvil estable: cada pestaña tiene su propio scroll */
+/* v2.8.7 — estructura móvil estable: cada pestaña tiene su propio scroll */
 html,body{
   margin:0!important;
   width:100%!important;
@@ -364,7 +364,7 @@ main{
 }
 
 
-/* v2.8.6 clasificación: jornada, total y jugadores disputados */
+/* v2.8.7 clasificación: jornada, total y jugadores disputados */
 .standings{padding:8px 14px!important}
 .standingRow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:15px 0;border-bottom:1px solid #18321f}
 .standingRow:last-child{border-bottom:0}
@@ -374,6 +374,27 @@ main{
 .standingRow small b{color:#fff}
 .standingRow small em{color:#7cff18;font-style:normal;font-weight:1000}
 .standingPts{font-size:20px;padding-top:1px}
+
+
+/* v2.8.7 — detalle visible de clasificación */
+#leagueList.standings{padding:8px 16px!important}
+#leagueList .standingRow{
+ display:flex!important;justify-content:space-between!important;
+ align-items:flex-start!important;gap:8px!important;
+ padding:15px 0!important;border-bottom:1px solid #17331f!important;
+}
+#leagueList .standingRow:last-child{border-bottom:0!important}
+#leagueList .standingMain{flex:1!important;min-width:0!important}
+#leagueList .standingName{display:flex!important;align-items:center!important;gap:9px!important}
+#leagueList .standingName strong{font-size:17px!important;color:#fff!important}
+#leagueList .standingDetails{
+ display:flex!important;flex-wrap:wrap!important;gap:3px 12px!important;
+ margin:7px 0 0 30px!important;font-size:11px!important;
+ color:#929d96!important;font-weight:800!important;
+}
+#leagueList .standingDetails b{color:#fff!important}
+#leagueList .standingDetails em{color:#72ff19!important;font-style:normal!important;font-weight:1000!important}
+#leagueList .standingPts{font-size:20px!important;color:#fff!important}
 
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
@@ -453,11 +474,7 @@ main{
 
 </div></section>
 <section id="league" class="screen"><div class="muted">LIGA</div><h1>🏆 Clasificación</h1>
-<div class="box standings">
- <div class="standingRow"><div><strong>🥇 Carlos FC</strong><small>Jornada <b>18 pts</b> · Total <b>53 pts</b> · Jugadores <em>7/11</em></small></div><b class="standingPts">53</b></div>
- <div class="standingRow"><div><strong>🥈 Isma FC</strong><small>Jornada <b>16 pts</b> · Total <b>48 pts</b> · Jugadores <em>6/11</em></small></div><b class="standingPts">48</b></div>
- <div class="standingRow"><div><strong>🥉 David FC</strong><small>Jornada <b>14 pts</b> · Total <b>46 pts</b> · Jugadores <em>6/11</em></small></div><b class="standingPts">46</b></div>
-</div></section>
+<div class="box standings" id="leagueList"></div></section>
 <section id="profile" class="screen"><div class="muted">PERFIL</div><h1>👤 Isma FC</h1><div class="box"><h2>🏆 2 campeonatos</h2></div></section></main>
 <nav class="tabs"><button class="on" data-id="home" onclick="go('home',this)"><span>🏠</span>Inicio</button><button data-id="team" onclick="go('team',this)"><span>⚽</span>Plantilla</button><button data-id="market" onclick="go('market',this)"><span>🛒</span>Mercado</button><button data-id="league" onclick="go('league',this)"><span>🏆</span>Liga</button><button data-id="profile" onclick="go('profile',this)"><span>👤</span>Perfil</button></nav></div>
 <div id="shade" class="shade" onclick="drawer()"><div class="drawer" onclick="event.stopPropagation()"><h2>Mis ligas</h2><div class="league on">🏆 Liga de Amigos</div><div class="league">⭐ Champions Fantasy</div><div class="league">⚽ Liga Trabajo</div><div class="league">➕ Crear liga</div><div class="league">🔑 Unirse con código</div></div></div>
@@ -918,7 +935,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.6 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.7 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
@@ -954,6 +971,45 @@ function resolveWinningBid(playerName, marketValue, paidPrice){
     initialClause: clause
   };
 }
+</script>
+
+
+<script>
+(function(){
+  function paintDetailedLeague(){
+    const box=document.getElementById("leagueList");
+    if(!box)return;
+    const rows=[
+      ["🥇","Carlos FC",18,53,7],
+      ["🥈","Isma FC",16,48,6],
+      ["🥉","David FC",14,46,6]
+    ];
+    box.innerHTML=rows.map(r=>`
+      <div class="standingRow">
+        <div class="standingMain">
+          <div class="standingName"><span>${r[0]}</span><strong>${r[1]}</strong></div>
+          <div class="standingDetails">
+            <span>Jornada <b>${r[2]} pts</b></span>
+            <span>Total <b>${r[3]} pts</b></span>
+            <span>Jugadores <em>${r[4]}/11</em></span>
+          </div>
+        </div>
+        <b class="standingPts">${r[3]}</b>
+      </div>`).join("");
+  }
+  document.addEventListener("DOMContentLoaded",paintDetailedLeague);
+  window.addEventListener("load",paintDetailedLeague);
+  setTimeout(paintDetailedLeague,100);
+  setTimeout(paintDetailedLeague,500);
+
+  const oldGo=window.go;
+  if(typeof oldGo==="function"){
+    window.go=function(id,b){
+      oldGo(id,b);
+      if(id==="league") setTimeout(paintDetailedLeague,0);
+    };
+  }
+})();
 </script>
 
 </body></html>
