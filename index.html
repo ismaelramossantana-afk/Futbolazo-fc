@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.3 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.4 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.3 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.4 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.3 — cláusulas */
+/* v2.8.4 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -245,7 +245,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
 
 
-/* v2.8.3 — corrección definitiva del hueco negro al cambiar de pestaña */
+/* v2.8.4 — corrección definitiva del hueco negro al cambiar de pestaña */
 #market,#league,#profile{
   margin-top:0!important;
   padding-top:0!important;
@@ -258,7 +258,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .screen{scroll-margin-top:70px}
 
 
-/* v2.8.3 — navegación móvil sin arrastre del scroll entre pestañas */
+/* v2.8.4 — navegación móvil sin arrastre del scroll entre pestañas */
 html,body{height:100%;overflow:hidden!important}
 body{overscroll-behavior:none}
 .app{
@@ -337,7 +337,6 @@ main{
 <section id="team" class="screen"><div class="box" style="padding:10px 12px;margin-top:0;font-size:11px">
 <b>Categorías:</b> ✨ Oro bonito · 🟡 Oro normal · 🟤 Oro flojo · ⚪ Plata
 </div><div class="row"><div><div class="muted">MI PLANTILLA</div><h1>11 inicial</h1></div><button id="formBtn" class="formation" onclick="openForms()" style="padding:9px 12px">4-3-3 ▾</button></div><div class="stadium"><div class="stands"></div><div class="flood"></div><div id="pitch" class="pitch"></div></div><h2>🪑 Banquillo</h2><div id="bench" class="bench"></div>
-</div>
 </section>
 <section id="market" class="screen"><div class="marketWrap">
 <div class="marketHead"><div><div class="marketEyebrow">MERCADO</div><div class="marketTitle">Fichajes</div></div><div class="marketMoney">26,6 M€</div></div>
@@ -834,7 +833,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.3 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.4 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
