@@ -1,6 +1,6 @@
 <!doctype html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>FUTBOLAZO FC v0.7</title>
+<title>FUTBOLAZO FC v2.9.0</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#010302;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{max-width:430px;margin:auto;min-height:100vh;background:#020604;padding-bottom:82px}
 header{height:70px;display:flex;align-items:center;gap:11px;padding:14px;position:sticky;top:0;background:#030805f4;border-bottom:1px solid #18321f;z-index:15}.hamb,.formation{border:1px solid #294531;background:#09130d;color:#7cff18;border-radius:12px;font-weight:950}.hamb{font-size:24px;padding:7px 11px}.logo{flex:1;font-size:20px;font-weight:1000;font-style:italic}.logo b{color:#7cff18}.money{font-size:14px;color:#f2c84d;font-weight:1000}
@@ -198,7 +198,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealProgress b{color:#73ff19}
 
 
-/* v2.8.7 — revelación: posición -> centro -> giro -> regreso */
+/* v2.8.8 — revelación: posición -> centro -> giro -> regreso */
 #overlay{pointer-events:none;background:transparent!important}
 #overlay.show{display:block!important}
 #overlay .reveal{display:none!important}
@@ -219,7 +219,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .revealNext{animation:nextPulse 1.25s infinite;box-shadow:0 0 0 2px #73ff19aa!important}
 
 
-/* v2.8.7 — todas las cartas descubiertas con estética premium tipo Haaland */
+/* v2.8.8 — todas las cartas descubiertas con estética premium tipo Haaland */
 .premiumCard{width:72px;height:106px;position:relative;clip-path:polygon(13% 0,87% 0,100% 9%,96% 82%,50% 100%,4% 82%,0 9%);background:radial-gradient(circle at 50% 25%,#6e571b 0,#191508 46%,#050604 78%);border:1px solid #e9c65a;filter:drop-shadow(0 7px 5px #000b);overflow:hidden;color:#f7df83;text-align:center}
 .premiumCard:before{content:"";position:absolute;inset:3px;clip-path:inherit;border:1px solid #9f7c24;pointer-events:none}
 .premiumCard .pcBrand{position:absolute;top:6px;left:0;right:0;font-size:4px;font-weight:1000;letter-spacing:.35px;color:#d9b849}
@@ -231,7 +231,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .cineFront .premiumCard{width:100%;height:100%;filter:none}
 
 
-/* v2.8.7 — cláusulas */
+/* v2.8.8 — cláusulas */
 .clauseBtn{color:#ffd86b!important;border-color:#705c25!important;background:#1b1608!important}
 .clausePanel{display:none;margin-top:10px;border:1px solid #3f351b;background:#0d0c07;border-radius:14px;padding:10px}
 .clausePanel.show{display:block}
@@ -245,7 +245,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .clauseDone{text-align:center;font-size:10px;font-weight:900;color:#73ff19;margin-top:7px}
 
 
-/* v2.8.7 — corrección definitiva del hueco negro al cambiar de pestaña */
+/* v2.8.8 — corrección definitiva del hueco negro al cambiar de pestaña */
 #market,#league,#profile{
   margin-top:0!important;
   padding-top:0!important;
@@ -258,7 +258,7 @@ main{padding:14px}.screen{display:none}.screen.active{display:block}.muted{color
 .screen{scroll-margin-top:70px}
 
 
-/* v2.8.7 — navegación móvil sin arrastre del scroll entre pestañas */
+/* v2.8.8 — navegación móvil sin arrastre del scroll entre pestañas */
 html,body{height:100%;overflow:hidden!important}
 body{overscroll-behavior:none}
 .app{
@@ -300,7 +300,7 @@ main{
 #league,#profile{padding-top:4px!important}
 
 
-/* v2.8.7 — estructura móvil estable: cada pestaña tiene su propio scroll */
+/* v2.8.8 — estructura móvil estable: cada pestaña tiene su propio scroll */
 html,body{
   margin:0!important;
   width:100%!important;
@@ -364,7 +364,7 @@ main{
 }
 
 
-/* v2.8.7 clasificación: jornada, total y jugadores disputados */
+/* v2.8.8 clasificación: jornada, total y jugadores disputados */
 .standings{padding:8px 14px!important}
 .standingRow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:15px 0;border-bottom:1px solid #18321f}
 .standingRow:last-child{border-bottom:0}
@@ -376,7 +376,7 @@ main{
 .standingPts{font-size:20px;padding-top:1px}
 
 
-/* v2.8.7 — detalle visible de clasificación */
+/* v2.8.8 — detalle visible de clasificación */
 #leagueList.standings{padding:8px 16px!important}
 #leagueList .standingRow{
  display:flex!important;justify-content:space-between!important;
@@ -396,6 +396,18 @@ main{
 #leagueList .standingDetails em{color:#72ff19!important;font-style:normal!important;font-weight:1000!important}
 #leagueList .standingPts{font-size:20px!important;color:#fff!important}
 
+
+/* v2.8.9 — resumen final de jornada */
+.roundSummaryBtn{width:100%;margin:14px 0 2px;border:1px solid #3f7b28;background:linear-gradient(135deg,#13251b,#0a150e);color:#7cff18;border-radius:16px;padding:14px;font-weight:1000;font-size:13px;box-shadow:0 0 18px #71ff1818}
+.roundOverlay{position:fixed;inset:0;background:#000d;z-index:80;display:none;align-items:center;justify-content:center;padding:18px}.roundOverlay.show{display:flex}.roundCard{width:min(390px,100%);background:linear-gradient(160deg,#0c1710,#030604);border:1px solid #315a25;border-radius:27px;padding:24px 18px 18px;text-align:center;position:relative;overflow:hidden;box-shadow:0 0 45px #73ff1920}.roundCard:before{content:"";position:absolute;inset:-80px;background:radial-gradient(circle at 50% 20%,#73ff1922,transparent 42%);pointer-events:none}.roundEyebrow{color:#7cff18;font-size:11px;font-weight:1000;letter-spacing:.15em}.roundTitle{font-size:27px;font-weight:1000;margin:7px 0 17px}.roundWinner{font-size:12px;color:#8d9991}.roundScore{font-size:40px;font-weight:1000;margin:2px 0 16px}.roundMvp{display:grid;grid-template-columns:56px 1fr auto;align-items:center;text-align:left;gap:10px;background:#0b130e;border:1px solid #263d2c;border-radius:17px;padding:11px}.roundMvp img{width:50px;height:58px;object-fit:contain}.roundMvp small{display:block;color:#87948c;font-size:10px}.roundMvp b{display:block;margin-top:3px}.roundMvpPts{color:#f5d45e;font-size:17px;font-weight:1000}.roundStats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.roundStat{background:#07100b;border:1px solid #1c3423;border-radius:14px;padding:12px}.roundStat small{display:block;color:#849088;font-size:10px}.roundStat b{display:block;margin-top:4px;font-size:16px}.roundClose{width:100%;border:0;border-radius:14px;padding:13px;background:#72ff19;color:#071006;font-weight:1000}.confetti{position:absolute;width:7px;height:13px;background:#72ff19;top:-20px;animation:fall 2.8s linear infinite}.confetti:nth-child(2n){background:#f5d45e;animation-delay:.4s}.confetti:nth-child(3n){animation-delay:1s}@keyframes fall{to{transform:translateY(520px) rotate(540deg)}}
+
+/* v2.9.0 — cartas completas para todos los jugadores */
+.approvedCard img,.cineFront>img{object-fit:contain!important;background:transparent!important}
+.sheetCardWrap img{object-fit:contain!important}
+.roundMvp img{object-fit:contain!important;border-radius:6px!important}
+
+.marketAvatar{padding:0!important;overflow:hidden!important;background:#090b08!important}
+.marketAvatar img{width:100%;height:100%;object-fit:cover;display:block}
 </style></head><body><div class="app"><header><button class="hamb" onclick="drawer()">☰</button><div class="logo">FUTBOLAZO <b>FC</b></div><div class="money">26,6 M€</div></header><main>
 <section id="home" class="screen active">
   <div class="homeHero">
@@ -424,6 +436,8 @@ main{
     <div class="rankRow"><span>3</span><span>La Máquina</span><span class="rankPts">31 pts</span></div>
   </div>
 
+  <button class="roundSummaryBtn" onclick="openRoundSummary()">🏆 VER RESUMEN DE LA JORNADA</button>
+
   <div class="nextRound">
     <div class="fixtureHead"><strong>PRÓXIMOS PARTIDOS</strong><span class="compPill">LIGA ▾</span></div>
     <div class="fixture"><div class="fixtureTeam">Real Madrid</div><div class="fixtureTime">SÁB 22 AGO<b>21:00</b></div><div class="fixtureTeam right">Barcelona</div></div>
@@ -445,10 +459,10 @@ main{
 <div class="marketTools"><div class="marketSearch">🔎 Buscar jugador</div><div class="marketFilter">☰ Filtros</div></div>
 <div class="marketNotice">⏱️ El mercado se actualiza cada día</div>
 <div id="marketAvailable" class="marketPane active"><div class="marketList">
-<div class="marketPlayer"><div class="marketAvatar">⚽</div><div class="marketInfo"><b>Jude Bellingham</b><span>MC · Real Madrid</span><small>Valor 14,8 M€</small></div><div class="marketBid"><strong>15,2 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">⚡</div><div class="marketInfo"><b>Nico Williams</b><span>EI · Athletic Club</span><small>Valor 10,4 M€</small></div><div class="marketBid"><strong>10,9 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">🛡️</div><div class="marketInfo"><b>Ronald Araújo</b><span>DFC · Barcelona</span><small>Valor 9,7 M€</small></div><div class="marketBid"><strong>10,1 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
-<div class="marketPlayer"><div class="marketAvatar">🔥</div><div class="marketInfo"><b>Vlahović</b><span>DC · Juventus</span><small>Valor 11,3 M€</small></div><div class="marketBid"><strong>11,8 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar"><img src="cards/bellingham-card.png" alt="Jude Bellingham"></div><div class="marketInfo"><b>Jude Bellingham</b><span>MC · Real Madrid</span><small>Valor 14,8 M€</small></div><div class="marketBid"><strong>15,2 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar"><img src="cards/nico-card.png" alt="Nico Williams"></div><div class="marketInfo"><b>Nico Williams</b><span>EI · Athletic Club</span><small>Valor 10,4 M€</small></div><div class="marketBid"><strong>10,9 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar"><img src="cards/araujo-card.png" alt="Ronald Araújo"></div><div class="marketInfo"><b>Ronald Araújo</b><span>DFC · Barcelona</span><small>Valor 9,7 M€</small></div><div class="marketBid"><strong>10,1 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
+<div class="marketPlayer"><div class="marketAvatar"><img src="cards/vlahovic-card.png" alt="Vlahović"></div><div class="marketInfo"><b>Vlahović</b><span>DC · Juventus</span><small>Valor 11,3 M€</small></div><div class="marketBid"><strong>11,8 M€</strong><button onclick="openBid(this)">PUJAR</button></div></div>
 </div></div>
 
 <div id="marketBids" class="marketPane">
@@ -474,12 +488,24 @@ main{
 
 </div></section>
 <section id="league" class="screen"><div class="muted">LIGA</div><h1>🏆 Clasificación</h1>
-<div class="box standings" id="leagueList"></div></section>
+<div class="box standings" id="leagueList">
+<div class="standingRow"><div class="standingMain"><div class="standingName"><span>🥇</span><strong>Carlos FC</strong></div><div class="standingDetails"><span>Jornada <b>18 pts</b></span><span>Total <b>53 pts</b></span><span>Jugadores <em>7/11</em></span></div></div><b class="standingPts">53</b></div>
+<div class="standingRow"><div class="standingMain"><div class="standingName"><span>🥈</span><strong>Isma FC</strong></div><div class="standingDetails"><span>Jornada <b>16 pts</b></span><span>Total <b>48 pts</b></span><span>Jugadores <em>6/11</em></span></div></div><b class="standingPts">48</b></div>
+<div class="standingRow"><div class="standingMain"><div class="standingName"><span>🥉</span><strong>David FC</strong></div><div class="standingDetails"><span>Jornada <b>14 pts</b></span><span>Total <b>46 pts</b></span><span>Jugadores <em>6/11</em></span></div></div><b class="standingPts">46</b></div>
+</div></section>
 <section id="profile" class="screen"><div class="muted">PERFIL</div><h1>👤 Isma FC</h1><div class="box"><h2>🏆 2 campeonatos</h2></div></section></main>
 <nav class="tabs"><button class="on" data-id="home" onclick="go('home',this)"><span>🏠</span>Inicio</button><button data-id="team" onclick="go('team',this)"><span>⚽</span>Plantilla</button><button data-id="market" onclick="go('market',this)"><span>🛒</span>Mercado</button><button data-id="league" onclick="go('league',this)"><span>🏆</span>Liga</button><button data-id="profile" onclick="go('profile',this)"><span>👤</span>Perfil</button></nav></div>
 <div id="shade" class="shade" onclick="drawer()"><div class="drawer" onclick="event.stopPropagation()"><h2>Mis ligas</h2><div class="league on">🏆 Liga de Amigos</div><div class="league">⭐ Champions Fantasy</div><div class="league">⚽ Liga Trabajo</div><div class="league">➕ Crear liga</div><div class="league">🔑 Unirse con código</div></div></div>
 <div id="modal" class="modal" onclick="closeForms()"><div class="sheet" onclick="event.stopPropagation()"><div class="row"><h2>Cambiar alineación</h2><button class="btn" onclick="closeForms()">✕</button></div><div id="formList" class="formations"></div></div></div>
 <div id="overlay" class="overlay"><div class="reveal"><div class="bigcard"><div id="s1" class="stage"></div><div id="s2" class="stage"></div><div id="s3" class="stage"></div><div id="s4" class="final"></div></div><button class="btn primary wide" style="margin-top:14px" onclick="closeR()">CONTINUAR</button></div></div>
+
+<div id="roundOverlay" class="roundOverlay" onclick="closeRoundSummary()"><div class="roundCard" onclick="event.stopPropagation()">
+<span class="confetti" style="left:8%"></span><span class="confetti" style="left:22%"></span><span class="confetti" style="left:41%"></span><span class="confetti" style="left:62%"></span><span class="confetti" style="left:83%"></span>
+<div class="roundEyebrow">FUTBOLAZO FC · JORNADA 4</div><div class="roundTitle">JORNADA FINALIZADA 🏆</div>
+<div class="roundWinner">TU PUNTUACIÓN</div><div class="roundScore">82,6 <small style="font-size:14px;color:#87948c">PTS</small></div>
+<div class="roundMvp"><img src="cards/haaland-card.png" alt="Haaland"><div><small>⭐ MVP DE TU EQUIPO</small><b>Erling Haaland</b><small>2 goles · 90 min</small></div><div class="roundMvpPts">16,4</div></div>
+<div class="roundStats"><div class="roundStat"><small>CLASIFICACIÓN</small><b>↑ 2.º puesto</b></div><div class="roundStat"><small>PREMIO</small><b>+1,0 M€ 💰</b></div></div>
+<button class="roundClose" onclick="closeRoundSummary()">CONTINUAR</button></div></div>
 <script>
 const P=[
 ["Haaland","DC","Man. City","🇳🇴","Noruega","pretty","haaland.svg"],
@@ -508,14 +534,26 @@ function markTeamDiscoveryComplete(){
 }
 function clubIcon(c){return c==="Real Madrid"?"⚪":c==="Barcelona"?"🔵🔴":c==="Man. City"?"🔷":c==="PSG"?"🔵":c==="Athletic"?"🔴⚪":"⚫⚪"}
 
+function cardSrc(x){
+  const m={
+    "Haaland":"cards/haaland-card.png",
+    "Lamine Yamal":"cards/yamal-card.png",
+    "Mbappé":"cards/mbappe-card.png",
+    "Bellingham":"cards/bellingham-card.png",
+    "Pedri":"cards/pedri-card.png",
+    "Valverde":"cards/valverde-card.png",
+    "Rüdiger":"cards/rudiger-card.png",
+    "Araújo":"cards/araujo-card.png",
+    "Marquinhos":"cards/marquinhos-card.png",
+    "Carvajal":"cards/carvajal-card.png",
+    "Courtois":"cards/courtois-card.png",
+    "Vlahović":"cards/vlahovic-card.png",
+    "Nico Williams":"cards/nico-card.png"
+  };
+  return m[x[0]] || x[6];
+}
 function premiumHTML(x){
- return `<div class="premiumCard">
-   <div class="pcBrand">FUTBOLAZO FC</div>
-   <div class="pcPos">${x[1]}</div>
-   <div class="pcPortrait"><img src="${x[6]}" alt="${x[0]}"></div>
-   <div class="pcName">${x[0].toUpperCase()}</div>
-   <div class="pcMeta">${x[3]}</div>
- </div>`;
+  return `<img src="${cardSrc(x)}" alt="${x[0]} · FUTBOLAZO FC">`;
 }
 
 function make(x,k){
@@ -523,10 +561,7 @@ function make(x,k){
   e.dataset.revealKey=k;
   e.dataset.playerName=x[0];
   e.dataset.playerPos=x[1];
-  if(seen[k]&&x[0]==="Haaland"){
-    e.className="approvedCard";
-    e.innerHTML='<img src="haaland-card.png" alt="Haaland FUTBOLAZO FC">';
-  }else if(seen[k]){
+  if(seen[k]){
     e.className="approvedCard";
     e.innerHTML=premiumHTML(x);
   }else{
@@ -551,9 +586,7 @@ function reveal(x,k){
   ghost.className="cineCard";
   ghost.style.left=r.left+"px"; ghost.style.top=r.top+"px";
   ghost.style.width=r.width+"px"; ghost.style.height=r.height+"px";
-  const front=x[0]==="Haaland"
-    ? '<img src="haaland-card.png" alt="Haaland">'
-    : premiumHTML(x);
+  const front=premiumHTML(x);
   ghost.innerHTML=`<div class="cineInner"><div class="cineFace cineBack">◆</div><div class="cineFace cineFront">${front}</div></div>`;
   document.body.appendChild(ghost);
   source.style.visibility="hidden";
@@ -777,7 +810,7 @@ function openPlayerSheet(x){
   document.getElementById('sheetMeta').textContent=x[1]+' · '+x[2];
   document.getElementById('sheetValue').textContent=(x[0]==='Haaland'?'18,5 M€':x[0]==='Courtois'?'12,0 M€':'10,0 M€');
   document.getElementById('sheetPoints').textContent=(x[0]==='Haaland'?'42 pts':'—');
-  document.getElementById('sheetCardImg').src=x[0]==='Haaland'?'haaland-card.png':x[6];
+  document.getElementById('sheetCardImg').src=cardSrc(x);
   document.getElementById('sellPanel').classList.remove('show');
   const cp=document.getElementById('clausePanel'); if(cp)cp.classList.remove('show');
   document.getElementById('sellDone').style.display='none';
@@ -935,7 +968,7 @@ function receiveByClause(playerName,paidClause,returning){
 
 
 <script>
-/* v2.8.7 — cláusula inicial al ganar una puja del mercado cerrado
+/* v2.8.8 — cláusula inicial al ganar una puja del mercado cerrado
    Regla:
    cláusula inicial = precio pagado,
    con tope de valor de mercado + 15 M€.
@@ -1012,4 +1045,9 @@ function resolveWinningBid(playerName, marketValue, paidPrice){
 })();
 </script>
 
+
+<script>
+function openRoundSummary(){document.getElementById('roundOverlay').classList.add('show');document.body.style.overflow='hidden'}
+function closeRoundSummary(){document.getElementById('roundOverlay').classList.remove('show');document.body.style.overflow=''}
+</script>
 </body></html>
